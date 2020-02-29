@@ -1,10 +1,15 @@
 package com.nsu.bd.aircraft.model.staff;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity(name = "engineers")
-public class Engineer extends EngineeringStaff {
+@Getter
+@Setter
+@Entity(name = "master")
+public class Master extends EngineeringStaff {
     @Column(name = "site_id")
     private int siteId;
 }

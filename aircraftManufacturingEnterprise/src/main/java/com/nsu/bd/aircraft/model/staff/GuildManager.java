@@ -5,16 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
-@Entity(name = "staff")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Employee {
+@Getter
+@Entity(name = "guild_manager")
+public class GuildManager extends EngineeringStaff{
     @Id
+    @Column(name = "id_pk")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    private String surname;
-
-    private String name;
+    private int idPk;
 }
