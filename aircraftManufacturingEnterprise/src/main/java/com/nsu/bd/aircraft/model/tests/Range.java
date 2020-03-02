@@ -11,10 +11,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name="range")
+@Entity(name = "range")
 public class Range {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToMany

@@ -1,4 +1,4 @@
 package com.nsu.bd.aircraft.model.staff;
 
-public class Technician extends EngineeringStaff{
+public class Technician extends EngineeringStaff {
 }

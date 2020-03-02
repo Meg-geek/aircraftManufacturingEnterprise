@@ -18,6 +18,7 @@ public class Product {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "guild_id")
     private Guild guild;
 
     @OneToMany(fetch = FetchType.LAZY)

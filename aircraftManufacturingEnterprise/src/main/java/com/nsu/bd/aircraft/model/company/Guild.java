@@ -2,10 +2,10 @@ package com.nsu.bd.aircraft.model.company;
 
 
 import com.nsu.bd.aircraft.model.product.Product;
-import com.nsu.bd.aircraft.model.staff.EngineeringStaff;
 import com.nsu.bd.aircraft.model.staff.GuildManager;
 import com.nsu.bd.aircraft.model.tests.Range;
 import com.nsu.bd.aircraft.model.tests.Test;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,17 +14,19 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity(name = "guild")
 public class Guild {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "manager_id", referencedColumnName = "id_pk")
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
     private GuildManager guildManager;
 
     //полигоны
@@ -46,4 +48,7 @@ public class Guild {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "guild_id")
     private List<Test> tests;
+
+    protected Guild() {
+    }
 }

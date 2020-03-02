@@ -12,7 +12,7 @@ import java.util.List;
 @Entity(name = "company")
 public class Company {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String name;
@@ -21,10 +21,10 @@ public class Company {
     @JoinColumn(name = "company_id")
     private List<Guild> guilds;
 
-    protected Company(){}
+    protected Company() {
+    }
 
-    //to create instances of Company to be saved to the database.
-    public Company(String name){
+    public Company(String name) {
         this.name = name;
     }
 }

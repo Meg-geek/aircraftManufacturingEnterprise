@@ -24,14 +24,18 @@ public class Test {
     private List<Equipment> equipments;
 
     @ManyToOne
+    @JoinColumn(name = "guild_id")
     private Guild guild;
 
     @ManyToOne
+    @JoinColumn(name = "range_id")
     private Range range;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
+    @JoinColumn(name = "tester_id")
     private Tester tester;
 }

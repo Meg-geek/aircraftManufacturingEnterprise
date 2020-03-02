@@ -1,10 +1,12 @@
 package com.nsu.bd.aircraft.model.company;
 
 
-import com.nsu.bd.aircraft.model.staff.*;
+import com.nsu.bd.aircraft.model.staff.Brigade;
+import com.nsu.bd.aircraft.model.staff.Engineer;
+import com.nsu.bd.aircraft.model.staff.Master;
+import com.nsu.bd.aircraft.model.staff.SiteManager;
 import lombok.Getter;
 import lombok.Setter;
-
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,17 +16,18 @@ import java.util.List;
 @Entity(name = "site")
 public class Site {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "guild_id")
-    private int guildId;
+    @ManyToOne
+    @JoinColumn(name = "guild_id")
+    private Guild guild;
 
     @Column(name = "work_type")
     private String workType;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "site_manager_id", referencedColumnName = "id_pk")
+    @JoinColumn(name = "site_manager_id", referencedColumnName = "id")
     private SiteManager siteManager;
 
     @OneToMany(fetch = FetchType.LAZY)
