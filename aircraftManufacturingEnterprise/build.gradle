@@ -12,6 +12,7 @@ buildscript {
 
 plugins {
     id 'java'
+    id "org.flywaydb.flyway" version "6.3.0"
 }
 
 apply plugin: 'org.springframework.boot'
@@ -25,6 +26,13 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/air_db'
+    user = 'postgres'
+    password = 'root'
+}
+
 
 
 dependencies {
@@ -42,4 +50,5 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.5.RELEASE'
 
+    compile('org.flywaydb:flyway-core')
 }
