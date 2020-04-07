@@ -26,8 +26,9 @@ create table if not exists equipment
             primary key,
     type     varchar(255),
     range_id integer
-        constraint fkr3oaeegmo2jixmuyrlaub4v6
+        constraint equipment_range_id_fk
             references range
+            on update cascade on delete cascade
 );
 
 alter table equipment
@@ -50,8 +51,9 @@ create table if not exists engineering_staff
     id integer not null
         constraint engineering_staff_pkey
             primary key
-        constraint fkqxr4ntk72nw6r68qhxpp0u7fi
+        constraint engineering_staff_staff_id_fk
             references staff
+            on update cascade on delete cascade
 );
 
 alter table engineering_staff
@@ -62,8 +64,9 @@ create table if not exists guild_manager
     id integer not null
         constraint guild_manager_pkey
             primary key
-        constraint fkeqkrmfy25j94cjnmftixg8efi
+        constraint guild_manager_engineering_staff_id_fk
             references engineering_staff
+            on update cascade on delete cascade
 );
 
 alter table guild_manager
@@ -75,11 +78,13 @@ create table if not exists guild
         constraint guild_pkey
             primary key,
     company_id integer
-        constraint fkks2ni5t1x1pxbrugj7p7cc7k
-            references company,
+        constraint guild_company_id_fk
+            references company
+            on update cascade on delete cascade,
     manager_id integer
-        constraint fkouye7wj3te2t2f1p7070itfii
+        constraint guild_guild_manager_id_fk
             references guild_manager
+            on update cascade on delete cascade
 );
 
 alter table guild
@@ -91,8 +96,9 @@ create table if not exists products
         constraint products_pkey
             primary key,
     guild_id integer
-        constraint fkma36stsbb5yoowiff8aq28vmi
+        constraint products_guild_id_fk
             references guild
+            on update cascade on delete cascade
 );
 
 alter table products
@@ -104,8 +110,9 @@ create table if not exists hang_glider
     id   integer not null
         constraint hang_glider_pkey
             primary key
-        constraint fkqec0ddxk5ufivrtfqa4stfjl7
+        constraint hang_glider_products_id_fk
             references products
+            on update cascade on delete cascade
 );
 
 alter table hang_glider
@@ -117,8 +124,9 @@ create table if not exists helicopter
     id   integer not null
         constraint helicopter_pkey
             primary key
-        constraint fkkux26nqa8ejt5jhjim3s45ovp
+        constraint helicopter_products_id_fk
             references products
+            on update cascade on delete cascade
 );
 
 alter table helicopter
@@ -131,24 +139,27 @@ create table if not exists plane
     id            integer not null
         constraint plane_pkey
             primary key
-        constraint fkqd78ebdh040fxt9j4bv8ltxri
+        constraint plane_products_id_fk
             references products
+            on update cascade on delete cascade
 );
 
 alter table plane
     owner to postgres;
 
-create table if not exists range_guilds
+create table if not exists range_guild
 (
-    range_id  integer not null
-        constraint fks0atv890c2kbfl4mevs4dkyra
-            references range,
-    guilds_id integer not null
-        constraint fk5e73lss9dr34p9scspnbshvh4
+    range_id integer not null
+        constraint range_guilds_range_id_fk
+            references range
+            on update cascade on delete cascade,
+    guild_id integer not null
+        constraint range_guilds_guild_id_fk
             references guild
+            on update cascade on delete cascade
 );
 
-alter table range_guilds
+alter table range_guild
     owner to postgres;
 
 create table if not exists rocket
@@ -157,8 +168,9 @@ create table if not exists rocket
     id           integer not null
         constraint rocket_pkey
             primary key
-        constraint fkq2i5uhmeypk4b8dtys6vx137q
+        constraint rocket_products_id_fk
             references products
+            on update cascade on delete cascade
 );
 
 alter table rocket
@@ -169,8 +181,9 @@ create table if not exists site_manager
     id integer not null
         constraint site_manager_pkey
             primary key
-        constraint fklu8yl1cf6si948unn7asy4ux6
+        constraint site_manager_engineering_staff_id_fk
             references engineering_staff
+            on update cascade on delete cascade
 );
 
 alter table site_manager
@@ -183,11 +196,12 @@ create table if not exists site
             primary key,
     work_type       varchar(255),
     guild_id        integer
-        constraint fk4geouy8oxcg1bw7qew8ugsmcf
+        constraint site_guild_id_fk
             references guild,
     site_manager_id integer
-        constraint fk73jk6e0lfnysyhaut89ae91t1
+        constraint site_site_manager_id_fk
             references site_manager
+            on update cascade on delete cascade
 );
 
 alter table site
@@ -200,8 +214,9 @@ create table if not exists brigade
             primary key,
     foreman_id integer,
     site_id    integer
-        constraint fkbns3318059pmtp16svoprbrsp
+        constraint brigade_site_id_fk
             references site
+            on update cascade on delete cascade
 );
 
 alter table brigade
@@ -212,11 +227,13 @@ create table if not exists engineers
     id      integer not null
         constraint engineers_pkey
             primary key
-        constraint fklkmckw37sr7jwdf70g8sexhix
-            references engineering_staff,
+        constraint engineers_engineering_staff_id_fk
+            references engineering_staff
+            on update cascade on delete cascade,
     site_id integer
-        constraint fkob1wucb77wuerxlws9qto2q13
+        constraint engineers_site_id_fk
             references site
+            on update cascade on delete cascade
 );
 
 alter table engineers
@@ -227,11 +244,13 @@ create table if not exists master
     id      integer not null
         constraint master_pkey
             primary key
-        constraint fkoodgdhqw0l99oyo141ke9cw9c
-            references engineering_staff,
+        constraint master_engineering_staff_id_fk
+            references engineering_staff
+            on update cascade on delete cascade,
     site_id integer
-        constraint fk89ua6x1gswig3knebxiv34dv7
+        constraint master_site_id_fk
             references site
+            on update cascade on delete cascade
 );
 
 alter table master
@@ -242,11 +261,13 @@ create table if not exists tester
     id       integer not null
         constraint tester_pkey
             primary key
-        constraint fkrr90b5hthyjps29peat6dy6vk
-            references staff,
+        constraint tester_staff_id_fk
+            references staff
+            on update cascade on delete cascade,
     range_id integer
-        constraint fkp6i3dlix323dn1epvtaqahdfl
+        constraint tester_range_id_fk
             references range
+            on update cascade on delete cascade
 );
 
 alter table tester
@@ -258,46 +279,39 @@ create table if not exists test
         constraint test_pkey
             primary key,
     guild_id   integer
-        constraint fk10lar9cy9ct1f0cl6vldbnslb
-            references guild,
+        constraint test_guild_id_fk
+            references guild
+            on update cascade on delete cascade,
     product_id integer
-        constraint fkhivu10kwlf2hrk3sd5m3n5wrr
-            references products,
+        constraint test_products_id_fk
+            references products
+            on update cascade on delete cascade,
     range_id   integer
-        constraint fkckja7g4yys00igy0038n0ku90
-            references range,
+        constraint test_range_id_fk
+            references range
+            on update cascade on delete cascade,
     tester_id  integer
-        constraint fkeysb1pqaaao9d49mmsoc3tlnc
+        constraint test_tester_id_fk
             references tester
+            on update cascade on delete cascade
 );
 
 alter table test
     owner to postgres;
 
-create table if not exists equipment_tests
+create table if not exists equipment_test
 (
     equipment_id integer not null
-        constraint fk1nx5vwgybyook20yv2ead6lvn
-            references equipment,
-    tests_id     integer not null
-        constraint fk2aeyp7ks21q254kmhap26v3s3
-            references test
-);
-
-alter table equipment_tests
-    owner to postgres;
-
-create table if not exists test_equipment
-(
-    test_id      integer not null
-        constraint fktqb8hv9h0u24tp0k9qejh5c6s
-            references test,
-    equipment_id integer not null
-        constraint fk2mrnu7hyhoi2hy6bem9jcn67h
+        constraint equipment_tests_equipment_id_fk
             references equipment
+            on update cascade on delete cascade,
+    test_id      integer not null
+        constraint equipment_tests_test_id_fk
+            references test
+            on update cascade on delete cascade
 );
 
-alter table test_equipment
+alter table equipment_test
     owner to postgres;
 
 create table if not exists worker
@@ -305,27 +319,31 @@ create table if not exists worker
     id         integer not null
         constraint worker_pkey
             primary key
-        constraint fkakepsglr9e1rk611xjqt9h48q
-            references staff,
+        constraint worker_staff_id_fk
+            references staff
+            on update cascade on delete cascade,
     brigade_id integer
-        constraint fk37ai8wwfuqi1c8cmefx5ycsw3
+        constraint worker_brigade_id_fk
             references brigade
+            on update cascade on delete cascade
 );
 
 alter table worker
     owner to postgres;
 
 alter table brigade
-    add constraint fk1txl75ynx7f74mi5yy0bcfcrn
-        foreign key (foreman_id) references worker;
+    add constraint brigade_worker_id_fk
+        foreign key (foreman_id) references worker
+            on update cascade on delete cascade;
 
 create table if not exists turners
 (
     id integer not null
         constraint turners_pkey
             primary key
-        constraint fkblgigqmtpyum5b9nh6jlek8f7
+        constraint turners_worker_id_fk
             references worker
+            on update cascade on delete cascade
 );
 
 alter table turners
@@ -336,8 +354,9 @@ create table if not exists welders
     id integer not null
         constraint welders_pkey
             primary key
-        constraint fknagu37o4cv3iwqyt70hslgpnw
+        constraint welders_worker_id_fk
             references worker
+            on update cascade on delete cascade
 );
 
 alter table welders
@@ -348,8 +367,9 @@ create table if not exists pickers
     id integer not null
         constraint pickers_pkey
             primary key
-        constraint fk95bwn7yqy35r1ija7cvwue3g5
+        constraint pickers_worker_id_fk
             references worker
+            on update cascade on delete cascade
 );
 
 alter table pickers
