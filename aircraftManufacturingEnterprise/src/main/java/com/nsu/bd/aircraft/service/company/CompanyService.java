@@ -11,13 +11,18 @@ import org.springframework.stereotype.Service;
 public class CompanyService {
     private final CompanyDao companyDao;
 
-    private final GuildService guildService;
-
-    public void addCompany(Company company) {
-        companyDao.save(company);
-    }
-
     public Company findCompanyByName(String name) {
         return companyDao.findByName(name);
+    }
+
+    public Company addCompanyIfNotExist(Company company){
+        if(company == null || company.getName() == null){
+            return null;
+        }
+        Company foundCompany = companyDao.findByName(company.getName());
+        if(foundCompany != null){
+            return foundCompany;
+        }
+        return companyDao.save(company);
     }
 }

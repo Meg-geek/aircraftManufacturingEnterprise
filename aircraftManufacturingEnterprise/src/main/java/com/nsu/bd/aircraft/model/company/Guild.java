@@ -14,14 +14,16 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity(name = "guild")
 public class Guild {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @ManyToOne
+    @Column(name = "guild_name", nullable = false)
+    private String guildName;
+
+    @ManyToOne(optional = false)
     @JoinColumn(name = "company_id")
     private Company company;
 
@@ -50,5 +52,9 @@ public class Guild {
     private List<Test> tests;
 
     protected Guild() {
+    }
+
+    public Guild(String guildName){
+        this.guildName = guildName;
     }
 }

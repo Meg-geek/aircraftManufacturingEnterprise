@@ -19,11 +19,11 @@ public class Site {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "guild_id")
     private Guild guild;
 
-    @Column(name = "work_type")
+    @Column(name = "work_type", nullable = false)
     private String workType;
 
     @OneToOne(cascade = CascadeType.ALL)

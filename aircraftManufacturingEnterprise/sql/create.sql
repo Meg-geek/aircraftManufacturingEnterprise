@@ -6,9 +6,6 @@ create table company
     name varchar(255)
 );
 
-alter table company
-    owner to postgres;
-
 create table range
 (
     id integer not null
@@ -16,8 +13,6 @@ create table range
             primary key
 );
 
-alter table range
-    owner to postgres;
 
 create table equipment
 (
@@ -30,8 +25,6 @@ create table equipment
             references range
 );
 
-alter table equipment
-    owner to postgres;
 
 create table staff
 (
@@ -42,8 +35,7 @@ create table staff
     surname varchar(255)
 );
 
-alter table staff
-    owner to postgres;
+
 
 create table engineering_staff
 (
@@ -54,8 +46,6 @@ create table engineering_staff
             references staff
 );
 
-alter table engineering_staff
-    owner to postgres;
 
 create table guild_manager
 (
@@ -66,8 +56,6 @@ create table guild_manager
             references engineering_staff
 );
 
-alter table guild_manager
-    owner to postgres;
 
 create table guild
 (
@@ -82,8 +70,6 @@ create table guild
             references guild_manager
 );
 
-alter table guild
-    owner to postgres;
 
 create table products
 (
@@ -95,8 +81,6 @@ create table products
             references guild
 );
 
-alter table products
-    owner to postgres;
 
 create table hang_glider
 (
@@ -108,8 +92,6 @@ create table hang_glider
             references products
 );
 
-alter table hang_glider
-    owner to postgres;
 
 create table helicopter
 (
@@ -121,8 +103,6 @@ create table helicopter
             references products
 );
 
-alter table helicopter
-    owner to postgres;
 
 create table plane
 (
@@ -135,8 +115,6 @@ create table plane
             references products
 );
 
-alter table plane
-    owner to postgres;
 
 create table range_guilds
 (
@@ -148,8 +126,6 @@ create table range_guilds
             references guild
 );
 
-alter table range_guilds
-    owner to postgres;
 
 create table rocket
 (
@@ -161,8 +137,6 @@ create table rocket
             references products
 );
 
-alter table rocket
-    owner to postgres;
 
 create table site_manager
 (
@@ -172,9 +146,6 @@ create table site_manager
         constraint fklu8yl1cf6si948unn7asy4ux6
             references engineering_staff
 );
-
-alter table site_manager
-    owner to postgres;
 
 create table site
 (
@@ -190,8 +161,6 @@ create table site
             references site_manager
 );
 
-alter table site
-    owner to postgres;
 
 create table brigade
 (
@@ -204,8 +173,6 @@ create table brigade
             references site
 );
 
-alter table brigade
-    owner to postgres;
 
 create table engineers
 (
@@ -219,8 +186,6 @@ create table engineers
             references site
 );
 
-alter table engineers
-    owner to postgres;
 
 create table master
 (
@@ -234,8 +199,6 @@ create table master
             references site
 );
 
-alter table master
-    owner to postgres;
 
 create table tester
 (
@@ -249,8 +212,6 @@ create table tester
             references range
 );
 
-alter table tester
-    owner to postgres;
 
 create table test
 (
@@ -271,8 +232,6 @@ create table test
             references tester
 );
 
-alter table test
-    owner to postgres;
 
 create table equipment_tests
 (
@@ -284,8 +243,6 @@ create table equipment_tests
             references test
 );
 
-alter table equipment_tests
-    owner to postgres;
 
 create table test_equipment
 (
@@ -297,8 +254,6 @@ create table test_equipment
             references equipment
 );
 
-alter table test_equipment
-    owner to postgres;
 
 create table worker
 (
@@ -312,8 +267,6 @@ create table worker
             references brigade
 );
 
-alter table worker
-    owner to postgres;
 
 alter table brigade
     add constraint fk1txl75ynx7f74mi5yy0bcfcrn
@@ -328,8 +281,6 @@ create table turners
             references worker
 );
 
-alter table turners
-    owner to postgres;
 
 create table welders
 (
@@ -340,8 +291,6 @@ create table welders
             references worker
 );
 
-alter table welders
-    owner to postgres;
 
 create table pickers
 (
@@ -352,8 +301,6 @@ create table pickers
             references worker
 );
 
-alter table pickers
-    owner to postgres;
 
 create table stage
 (
@@ -363,8 +310,6 @@ create table stage
     stage_name varchar(255)
 );
 
-alter table stage
-    owner to postgres;
 
 create table product_accounting
 (
@@ -388,6 +333,4 @@ create table product_accounting
     end_time   date
 );
 
-alter table product_accounting
-    owner to postgres;
 
