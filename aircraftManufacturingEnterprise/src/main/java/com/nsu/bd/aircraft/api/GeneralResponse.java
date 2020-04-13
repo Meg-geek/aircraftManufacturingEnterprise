@@ -24,4 +24,9 @@ public class GeneralResponse<T> {
         this.cause = null;
     }
 
+    public GeneralResponse(T data){
+        this.status = Status.OK;
+        this.data = data;
+        this.cause = null;
+    }
 }

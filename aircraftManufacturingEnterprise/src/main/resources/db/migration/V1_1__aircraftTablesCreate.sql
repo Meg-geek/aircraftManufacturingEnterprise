@@ -84,11 +84,13 @@ create table if not exists guild
     manager_id integer
         constraint guild_guild_manager_id_fk
             references guild_manager
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    guild_name text
 );
 
 alter table guild
     owner to postgres;
+
 
 create table if not exists products
 (

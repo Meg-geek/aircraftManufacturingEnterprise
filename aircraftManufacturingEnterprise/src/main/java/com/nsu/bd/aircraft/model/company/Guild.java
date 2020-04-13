@@ -5,7 +5,6 @@ import com.nsu.bd.aircraft.model.product.Product;
 import com.nsu.bd.aircraft.model.staff.GuildManager;
 import com.nsu.bd.aircraft.model.tests.Range;
 import com.nsu.bd.aircraft.model.tests.Test;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,7 +53,7 @@ public class Guild {
     protected Guild() {
     }
 
-    public Guild(String guildName){
+    public Guild(String guildName) {
         this.guildName = guildName;
     }
 }

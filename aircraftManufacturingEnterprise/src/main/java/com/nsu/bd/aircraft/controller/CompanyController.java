@@ -4,13 +4,13 @@ import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.Status;
 import com.nsu.bd.aircraft.model.company.Company;
+import com.nsu.bd.aircraft.model.company.Guild;
 import com.nsu.bd.aircraft.service.company.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/aircraft/company")
@@ -24,6 +24,24 @@ public class CompanyController {
         if (isCompanyAdded) {
             return new GeneralResponse<>(Status.OK);
         }
-        return new GeneralResponse<>(Status.OK, ErrorCause.ALREADY_EXITS);
+        return new GeneralResponse<>(Status.ERROR, ErrorCause.ALREADY_EXITS);
+    }
+
+    @GetMapping("/get-all")
+    public GeneralResponse<List<Company>> getAllCompanies() {
+        return new GeneralResponse<>(companyService.getAllCompanies());
+    }
+
+    @GetMapping("/get-guilds")
+    public GeneralResponse<List<Guild>> getGuildsByCompanyName(
+            @RequestParam("companyName") String companyName) {
+        return new GeneralResponse<>(companyService
+                .getGuildsByCompanyName(companyName));
+    }
+
+    @DeleteMapping
+    public void deleteCompanyByName(
+            @RequestParam("companyName") String companyName){
+        companyService.deleteCompanyByName(companyName);
     }
 }

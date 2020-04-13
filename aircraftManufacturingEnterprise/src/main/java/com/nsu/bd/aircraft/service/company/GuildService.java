@@ -21,4 +21,8 @@ public class GuildService {
     public void addGuilds(List<Guild> guilds){
 
     }
+
+    public List<Guild> findByCompanyId(int companyId){
+        return guildDao.findByCompanyId(companyId);
+    }
 }
