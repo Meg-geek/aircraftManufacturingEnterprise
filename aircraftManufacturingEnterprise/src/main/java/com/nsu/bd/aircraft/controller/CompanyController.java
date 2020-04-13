@@ -1,12 +1,12 @@
 package com.nsu.bd.aircraft.controller;
 
+import com.nsu.bd.aircraft.api.ErrorCause;
+import com.nsu.bd.aircraft.api.GeneralResponse;
+import com.nsu.bd.aircraft.api.Status;
 import com.nsu.bd.aircraft.model.company.Company;
 import com.nsu.bd.aircraft.service.company.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,11 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping("/add")
-    public ResponseEntity addCompany(@RequestBody Company company){
-        Company addedCompany = companyService.addCompanyIfNotExist(company);
-        if(addedCompany != null){
-            return ResponseEntity.ok().body(addedCompany);
+    public GeneralResponse<?> addCompany(@RequestBody Company company) {
+        boolean isCompanyAdded = (companyService.addCompany(company) != null);
+        if (isCompanyAdded) {
+            return new GeneralResponse<>(Status.OK);
         }
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        return new GeneralResponse<>(Status.OK, ErrorCause.ALREADY_EXITS);
     }
 }

@@ -10,19 +10,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CompanyService {
     private final CompanyDao companyDao;
+    private final GuildService guildService;
 
     public Company findCompanyByName(String name) {
         return companyDao.findByName(name);
     }
 
-    public Company addCompanyIfNotExist(Company company){
-        if(company == null || company.getName() == null){
-            return null;
-        }
+    public Company addCompany(Company company){
         Company foundCompany = companyDao.findByName(company.getName());
         if(foundCompany != null){
             return foundCompany;
         }
+        guildService.addGuilds(company.getGuilds());
         return companyDao.save(company);
     }
 }
