@@ -3,7 +3,7 @@ package com.nsu.bd.aircraft.controller;
 import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.Status;
-import com.nsu.bd.aircraft.model.company.Company;
+import com.nsu.bd.aircraft.api.dto.company.CompanyDto;
 import com.nsu.bd.aircraft.model.company.Guild;
 import com.nsu.bd.aircraft.service.company.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping("/add")
-    public GeneralResponse<?> addCompany(@RequestBody Company company) {
-        boolean isCompanyAdded = (companyService.addCompany(company) != null);
+    public GeneralResponse<?> addCompany(@RequestBody CompanyDto companyDto) {
+        boolean isCompanyAdded = (companyService.addCompany(companyDto) != null);
         if (isCompanyAdded) {
             return new GeneralResponse<>(Status.OK);
         }
@@ -28,7 +28,7 @@ public class CompanyController {
     }
 
     @GetMapping("/get-all")
-    public GeneralResponse<List<Company>> getAllCompanies() {
+    public GeneralResponse<List<CompanyDto>> getAllCompanies() {
         return new GeneralResponse<>(companyService.getAllCompanies());
     }
 
@@ -41,7 +41,7 @@ public class CompanyController {
 
     @DeleteMapping
     public void deleteCompanyByName(
-            @RequestParam("companyName") String companyName){
+            @RequestParam("companyName") String companyName) {
         companyService.deleteCompanyByName(companyName);
     }
 }

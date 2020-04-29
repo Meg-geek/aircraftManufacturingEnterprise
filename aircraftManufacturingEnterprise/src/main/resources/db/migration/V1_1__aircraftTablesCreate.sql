@@ -412,4 +412,3 @@ create table if not exists product_accounting
 
 alter table product_accounting
     owner to postgres;
-
