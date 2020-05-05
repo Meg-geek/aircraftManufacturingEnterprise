@@ -3,7 +3,6 @@ package com.nsu.bd.aircraft.service.company;
 import com.nsu.bd.aircraft.api.dto.company.CompanyDto;
 import com.nsu.bd.aircraft.dao.company.CompanyDao;
 import com.nsu.bd.aircraft.model.company.Company;
-import com.nsu.bd.aircraft.model.company.Guild;
 import com.nsu.bd.aircraft.service.converters.company.CompanyConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import static java.util.Collections.emptyList;
 public class CompanyService {
     private final CompanyConverter companyConverter;
     private final CompanyDao companyDao;
-    private final GuildService guildService;
 
     public Company findCompanyByName(String name) {
         return companyDao.findByName(name);
@@ -29,7 +27,7 @@ public class CompanyService {
     public Company addCompany(CompanyDto companyDto) {
         Company foundCompany = companyDao.findByName(companyDto.getName());
         if (foundCompany != null) {
-            return foundCompany;
+            return null;
         }
         return companyDao.save(companyConverter.getCompany(companyDto));
     }
@@ -46,13 +44,14 @@ public class CompanyService {
         return companyDtos;
     }
 
-    public List<Guild> getGuildsByCompanyName(String companyName) {
-        Company company = companyDao.findByName(companyName);
-        if (company == null) {
-            return emptyList();
+    @Transactional
+    public boolean changeCompanyName(CompanyDto companyDto, String newName) {
+        Company foundCompany = companyDao.findByName(companyDto.getName());
+        if (foundCompany == null) {
+            return false;
         }
-        return guildService
-                .findByCompanyId(company.getId());
+        companyDao.updateCompanyName(foundCompany.getId(), newName);
+        return true;
     }
 
     @Transactional

@@ -7,4 +7,9 @@ import java.util.List;
 
 public interface GuildDao extends CrudRepository<Guild, Integer> {
     List<Guild> findByCompanyId(int companyId);
+
+    Guild findByGuildName(String guildName);
+
+    @Override
+    List<Guild> findAll();
 }

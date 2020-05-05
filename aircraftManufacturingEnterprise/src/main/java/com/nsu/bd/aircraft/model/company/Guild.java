@@ -53,6 +53,10 @@ public class Guild {
     protected Guild() {
     }
 
+    public Guild(String guildName) {
+        this.guildName = guildName;
+    }
+
     public Guild(String guildName, Company company) {
         this.guildName = guildName;
         this.company = company;
