@@ -1,9 +1,19 @@
 package com.nsu.bd.aircraft.api.dto.company;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyDto {
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
+
+    public CompanyDto(String name) {
+        this.name = name;
+    }
 }

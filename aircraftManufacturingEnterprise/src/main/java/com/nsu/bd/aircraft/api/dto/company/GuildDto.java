@@ -1,12 +1,17 @@
 package com.nsu.bd.aircraft.api.dto.company;
 
-import com.nsu.bd.aircraft.model.company.Company;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class GuildDto {
-    private final int id;
-    private final String guildName;
-    private final Company company;
-    private final int managerId;
+    private int id;
+    private String guildName;
+    private CompanyDto company;
+    private int managerId;
 }
