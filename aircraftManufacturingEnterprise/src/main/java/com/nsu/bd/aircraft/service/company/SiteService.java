@@ -12,13 +12,13 @@ public class SiteService {
     private final SiteDao siteDao;
 
     public void addSite(Site site) {
-        if(isSiteIncorrectInsert(site)){
+        if (isSiteIncorrectInsert(site)) {
             return;
         }
         siteDao.save(site);
     }
 
-    private boolean isSiteIncorrectInsert(Site site){
+    private boolean isSiteIncorrectInsert(Site site) {
         return site == null || site.getWorkType() == null;
     }
 }

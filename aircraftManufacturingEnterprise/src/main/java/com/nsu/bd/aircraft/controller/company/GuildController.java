@@ -1,4 +1,4 @@
-package com.nsu.bd.aircraft.controller;
+package com.nsu.bd.aircraft.controller.company;
 
 import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
@@ -38,7 +38,7 @@ public class GuildController {
     }
 
     @GetMapping("/get-by-company")
-    public GeneralResponse<List<GuildDto>> getCompanyGuilds(CompanyDto companyDto) {
+    public GeneralResponse<List<GuildDto>> getCompanyGuilds(@RequestBody CompanyDto companyDto) {
         log.info(LOG_INFO + "get company guilds request");
         return new GeneralResponse<>(guildService.findByCompany(companyDto));
     }

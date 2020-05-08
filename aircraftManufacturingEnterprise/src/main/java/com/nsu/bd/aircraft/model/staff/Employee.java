@@ -1,12 +1,16 @@
 package com.nsu.bd.aircraft.model.staff;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "staff")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
@@ -14,7 +18,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String surname;
-
     private String name;
+
+    private String surname;
 }

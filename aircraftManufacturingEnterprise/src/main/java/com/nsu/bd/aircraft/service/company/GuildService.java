@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.Collections.emptyList;
-
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GuildService {
@@ -33,18 +31,12 @@ public class GuildService {
     }
 
     public List<GuildDto> findByCompany(CompanyDto company) {
-        return makeGuildsResponse(guildDao.findByCompanyId(company.getId()));
+        return guildConverter
+                .getGuildDtosList(guildDao.findByCompanyId(company.getId()));
     }
 
     public List<GuildDto> getAllGuilds() {
-        return makeGuildsResponse(guildDao.findAll());
+        return guildConverter
+                .getGuildDtosList(guildDao.findAll());
     }
-
-    private List<GuildDto> makeGuildsResponse(List<Guild> guilds) {
-        if (guilds == null) {
-            return emptyList();
-        }
-        return guildConverter.getGuildDtosList(guilds);
-    }
-
 }

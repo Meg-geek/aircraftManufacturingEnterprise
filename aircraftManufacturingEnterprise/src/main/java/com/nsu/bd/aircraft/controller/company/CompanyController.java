@@ -1,4 +1,4 @@
-package com.nsu.bd.aircraft.controller;
+package com.nsu.bd.aircraft.controller.company;
 
 import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
@@ -47,7 +47,7 @@ public class CompanyController {
 
     @PutMapping("/change-name")
     public GeneralResponse<?> changeCompanyName(@RequestBody CompanyDto company,
-                                             @RequestParam("newName") String newName) {
+                                                @RequestParam("newName") String newName) {
         log.info(LOG_INFO + "request to change company name");
         if (companyService.changeCompanyName(company, newName)) {
             return new GeneralResponse<>(Status.OK);

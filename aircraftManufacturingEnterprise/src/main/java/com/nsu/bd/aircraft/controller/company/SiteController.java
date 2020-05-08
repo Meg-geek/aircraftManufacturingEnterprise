@@ -1,4 +1,4 @@
-package com.nsu.bd.aircraft.controller;
+package com.nsu.bd.aircraft.controller.company;
 
 import com.nsu.bd.aircraft.model.company.Site;
 import com.nsu.bd.aircraft.service.company.SiteService;
@@ -15,7 +15,7 @@ public class SiteController {
     private final SiteService siteService;
 
     @RequestMapping("/add")
-    public void addSite(@RequestBody Site site){
+    public void addSite(@RequestBody Site site) {
         siteService.addSite(site);
     }
 }
