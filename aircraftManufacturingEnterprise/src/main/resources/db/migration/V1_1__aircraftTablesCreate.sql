@@ -11,7 +11,7 @@ alter table company
 
 create table if not exists range
 (
-    id   integer not null
+    id   serial not null
         constraint range_pkey
             primary key,
     name text    not null
@@ -22,7 +22,7 @@ alter table range
 
 create table if not exists equipment
 (
-    id       integer not null
+    id       serial not null
         constraint equipment_pkey
             primary key,
     type     varchar(255),
@@ -37,7 +37,7 @@ alter table equipment
 
 create table if not exists staff
 (
-    id      integer      not null
+    id      serial      not null
         constraint staff_pkey
             primary key,
     name    varchar(255) not null,
@@ -62,7 +62,7 @@ alter table engineering_staff
 
 create table if not exists guild_manager
 (
-    id integer not null
+    id serial not null
         constraint guild_manager_pkey
             primary key
         constraint guild_manager_engineering_staff_id_fk
@@ -96,7 +96,7 @@ alter table guild
 
 create table if not exists products
 (
-    id       integer not null
+    id       serial not null
         constraint products_pkey
             primary key,
     guild_id integer
@@ -195,7 +195,7 @@ alter table site_manager
 
 create table if not exists site
 (
-    id              integer      not null
+    id              serial      not null
         constraint site_pkey
             primary key,
     work_type       varchar(255) not null,
@@ -213,7 +213,7 @@ alter table site
 
 create table if not exists brigade
 (
-    id         integer not null
+    id         serial not null
         constraint brigade_pkey
             primary key,
     foreman_id integer,
@@ -279,7 +279,7 @@ alter table tester
 
 create table if not exists test
 (
-    id         integer not null
+    id         serial not null
         constraint test_pkey
             primary key,
     guild_id   integer
@@ -381,7 +381,7 @@ alter table pickers
 
 create table if not exists stage
 (
-    id         integer not null
+    id         serial not null
         constraint stage_pkey
             primary key,
     stage_name varchar(255)
