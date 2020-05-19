@@ -14,11 +14,12 @@ import java.util.List;
 @Entity(name = "test")
 public class Test {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_id_seq")
+    @SequenceGenerator(name = "test_id_seq", sequenceName = "test_id_seq", allocationSize = 1)
     private int id;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "test_equipment",
+    @JoinTable(name = "equipment_test",
             joinColumns = @JoinColumn(name = "test_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
     private List<Equipment> equipments;

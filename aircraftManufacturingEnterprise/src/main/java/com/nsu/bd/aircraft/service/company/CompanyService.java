@@ -32,6 +32,14 @@ public class CompanyService {
         return companyDao.save(companyConverter.getCompany(companyDto));
     }
 
+    public Company getCompanyByName(CompanyDto companyDto) {
+        Company foundCompany = companyDao.findByName(companyDto.getName());
+        if (foundCompany != null) {
+            return foundCompany;
+        }
+        return companyDao.save(companyConverter.getCompany(companyDto));
+    }
+
     public List<CompanyDto> getAllCompanies() {
         List<Company> companies = companyDao.findAll();
         if (companies == null) {

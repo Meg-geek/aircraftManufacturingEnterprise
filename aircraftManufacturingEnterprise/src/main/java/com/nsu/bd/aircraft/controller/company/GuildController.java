@@ -22,7 +22,7 @@ public class GuildController {
     private final GuildService guildService;
 
     @PostMapping("/add")
-    public GeneralResponse<?> addGuild(@RequestBody GuildDto guildDto) {
+    public GeneralResponse<GuildDto> addGuild(@RequestBody GuildDto guildDto) {
         log.info(LOG_INFO + "addGuild request");
         boolean isGuildAdded = guildService.addGuild(guildDto);
         if (isGuildAdded) {

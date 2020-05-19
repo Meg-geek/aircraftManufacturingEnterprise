@@ -14,8 +14,12 @@ import java.util.List;
 @Entity(name = "range")
 public class Range {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "range_id_seq")
+    @SequenceGenerator(name = "range_id_seq", sequenceName = "range_id_seq", allocationSize = 1)
     private int id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @ManyToMany
     private List<Guild> guilds;

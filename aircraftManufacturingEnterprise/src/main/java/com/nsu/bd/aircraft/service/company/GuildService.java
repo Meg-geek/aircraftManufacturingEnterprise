@@ -25,7 +25,7 @@ public class GuildService {
         }
         guild = guildConverter.getGuild(guildDto);
         guild.setCompany(companyService
-                .addCompany(guildDto.getCompany()));
+                .getCompanyByName(guildDto.getCompany()));
         guildDao.save(guild);
         return true;
     }

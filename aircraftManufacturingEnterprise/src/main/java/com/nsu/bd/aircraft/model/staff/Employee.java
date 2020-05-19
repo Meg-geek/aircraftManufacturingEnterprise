@@ -15,7 +15,8 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "staff_id_seq")
+    @SequenceGenerator(name = "staff_id_seq", sequenceName = "staff_id_seq", allocationSize = 1)
     private int id;
 
     private String name;

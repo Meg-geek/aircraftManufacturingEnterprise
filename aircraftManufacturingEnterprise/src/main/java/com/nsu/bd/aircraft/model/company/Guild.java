@@ -16,7 +16,8 @@ import java.util.List;
 @Entity(name = "guild")
 public class Guild {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guild_id_seq")
+    @SequenceGenerator(name = "guild_id_seq", sequenceName = "guild_id_seq", allocationSize = 1)
     private int id;
 
     @Column(name = "guild_name", nullable = false)

@@ -16,7 +16,8 @@ import java.util.List;
 @Entity(name = "site")
 public class Site {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "site_id_seq")
+    @SequenceGenerator(name = "site_id_seq", sequenceName = "site_id_seq", allocationSize = 1)
     private int id;
 
     @ManyToOne(optional = false)

@@ -11,7 +11,8 @@ import java.util.List;
 @Entity(name = "brigade")
 public class Brigade {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "brigade_id_seq")
+    @SequenceGenerator(name = "brigade_id_seq", sequenceName = "brigade_id_seq", allocationSize = 1)
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
