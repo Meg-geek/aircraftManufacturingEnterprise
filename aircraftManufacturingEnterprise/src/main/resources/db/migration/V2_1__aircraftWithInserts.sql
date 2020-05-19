@@ -240,11 +240,11 @@ create table if not exists worker
             references brigade
             on update cascade on delete cascade
 );
-
-alter table brigade
-    add constraint brigade_worker_id_fk
-        foreign key (foreman_id) references worker
-            on update cascade on delete cascade;
+--
+-- alter table brigade
+--     add constraint brigade_worker_id_fk
+--         foreign key (foreman_id) references worker
+--             on update cascade on delete cascade;
 
 alter table brigade
     owner to postgres;
@@ -467,6 +467,8 @@ values ('Авиастроители'),
        ('РосАвиаСтрой'),
        ('Ракетный завод');
 
+
+
 INSERT INTO staff (surname, name)
 VALUES ('Иванов', 'Иван'),
        ('Петров', 'Иван'),
@@ -509,6 +511,7 @@ VALUES ('Иванов', 'Иван'),
        ('Фомичёв', 'Арсений'),
        ('Сергеев', 'Арсений');
 
+
 insert into engineering_staff
 values (1),
        (2),
@@ -541,6 +544,8 @@ values (1, 1, 'Конвертерный'),
        (4, 4, 'Покрасочный'),
        (5, 5, 'Подготовки составов');
 
+ALTER SEQUENCE guild_id_seq RESTART WITH 6;
+
 insert into site_manager
 values (6),
        (7),
@@ -554,6 +559,8 @@ values ('сборка', 1, 6),
        ('покраска', 3, 8),
        ('литье', 4, 9),
        ('штамповка', 5, 10);
+
+ALTER SEQUENCE site_id_seq RESTART WITH 6;
 
 insert into master
 values (36, 1),
@@ -674,8 +681,113 @@ values (31, 1),
        (34, 4),
        (35, 5);
 
+insert into equipment (type, range_id)
+VALUES ('Диагностическое', 1),
+       ('Сканер', 2),
+       ('Мотор-тестер', 3),
+       ('Одометр', 4),
+       ('ЭВМ', 5);
+
+insert into products (guild_id)
+values (1),
+       (2),
+       (3),
+       (4),
+       (5),
+       (1),
+       (2),
+       (3),
+       (4),
+       (5),
+       (1),
+       (2),
+       (3),
+       (4),
+       (5),
+       (1),
+       (2),
+       (3),
+       (4),
+       (5);
+
+insert into hang_glider
+values ('учебный', 1),
+       ('переходной', 2),
+       ('прогулочный', 3),
+       ('мачтовый паритель', 4),
+       ('мотодельтаплан', 5);
+
+insert into helicopter
+values ('учебный', 10),
+       ('боевой', 9),
+       ('гражданский', 8),
+       ('одновинтовой', 7),
+       ('реактивный', 6);
+
+insert into plane
+values (100, 'Airbus A310', 15),
+       (1000, 'ТУ-134', 14),
+       (200, 'ИЛ-86', 13),
+       (980, 'ИЛ-62', 12),
+       (1050, 'Boeing-747', 11);
+
+insert into rocket
+values (12, 16),
+       (19, 17),
+       (70, 18),
+       (300, 19),
+       (108, 20);
+
+insert into test (guild_id, product_id, range_id, tester_id)
+VALUES (1, 1, 1, 31),
+       (2, 2, 2, 32),
+       (3, 3, 3, 33),
+       (3, 3, 3, 34),
+       (4, 4, 4, 35);
+
+insert into equipment_test
+values (1, 1),
+       (2, 2),
+       (3, 3),
+       (4, 4),
+       (5, 5);
+
+insert into stage (stage_name)
+values ('разработка аванпроекта'),
+       ('рабочее проектирование'),
+       ('создание макета'),
+       ('постройка'),
+       ('летные испытания');
 
 
 
+insert into product_accounting (product_id, stage_id, site_id, test_id, begin_time, end_time)
+VALUES (1, 1, 1, 1, '1970-01-01 00:00:01', '2000-01-08'),
+       (2, 2, 2, 2, '2018-04-08', '2019-01-08'),
+       (3, 3, 3, 3, '2003-01-08', '2005-01-08'),
+       (4, 4, 4, 4, '2020-01-08', current_timestamp),
+       (5, 5, 5, 5, current_timestamp, NULL);
+
+insert into range_guild (range_id, guild_id)
+VALUES (1, 1),
+       (1, 2),
+       (2, 2),
+       (3, 3),
+       (4, 4);
+
+ALTER SEQUENCE company_id_seq RESTART WITH 7;
+
+ALTER SEQUENCE staff_id_seq RESTART WITH 41;
+
+ALTER SEQUENCE stage_id_seq RESTART WITH 6;
+
+ALTER SEQUENCE test_id_seq RESTART WITH 6;
+
+ALTER SEQUENCE products_id_seq RESTART WITH 21;
+
+ALTER SEQUENCE equipment_id_seq RESTART WITH 6;
+
+ALTER SEQUENCE range_id_seq RESTART WITH 6;
+ALTER SEQUENCE brigade_id_seq RESTART WITH 6;
 
 

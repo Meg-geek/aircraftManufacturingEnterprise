@@ -14,7 +14,7 @@ create table if not exists range
     id   serial not null
         constraint range_pkey
             primary key,
-    name text    not null
+    name text   not null
 );
 
 alter table range
@@ -37,7 +37,7 @@ alter table equipment
 
 create table if not exists staff
 (
-    id      serial      not null
+    id      serial       not null
         constraint staff_pkey
             primary key,
     name    varchar(255) not null,
@@ -195,7 +195,7 @@ alter table site_manager
 
 create table if not exists site
 (
-    id              serial      not null
+    id              serial       not null
         constraint site_pkey
             primary key,
     work_type       varchar(255) not null,
