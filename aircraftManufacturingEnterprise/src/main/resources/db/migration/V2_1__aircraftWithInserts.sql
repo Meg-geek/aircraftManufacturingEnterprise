@@ -134,7 +134,8 @@ create table if not exists helicopter
             primary key
         constraint helicopter_products_id_fk
             references products
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    weight integer
 );
 
 alter table helicopter
@@ -718,11 +719,11 @@ values ('учебный', 1),
        ('мотодельтаплан', 5);
 
 insert into helicopter
-values ('учебный', 10),
-       ('боевой', 9),
-       ('гражданский', 8),
-       ('одновинтовой', 7),
-       ('реактивный', 6);
+values ('учебный', 10, 1500),
+       ('боевой', 9, 2000),
+       ('гражданский', 8, 2000),
+       ('одновинтовой', 7, 3100),
+       ('реактивный', 6, 3300);
 
 insert into plane
 values (100, 'Airbus A310', 15),

@@ -130,7 +130,8 @@ create table if not exists helicopter
             primary key
         constraint helicopter_products_id_fk
             references products
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    weight integer
 );
 
 alter table helicopter

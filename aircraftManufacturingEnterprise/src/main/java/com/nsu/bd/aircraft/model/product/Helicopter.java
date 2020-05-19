@@ -10,4 +10,5 @@ import javax.persistence.Entity;
 @Entity(name = "helicopter")
 public class Helicopter extends Product {
     private String type;
+    private int weight;
 }
