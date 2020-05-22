@@ -28,9 +28,9 @@ repositories {
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/air_db'
+    url = 'jdbc:postgresql://localhost:54325/postgres'
     user = 'postgres'
-    password = 'root'
+    password = 'mysecretpassword'
 }
 
 
