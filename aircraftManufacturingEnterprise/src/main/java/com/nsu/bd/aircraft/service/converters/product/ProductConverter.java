@@ -7,6 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
+
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductConverter {
@@ -26,6 +31,44 @@ public class ProductConverter {
             return createHelicopter(productDto);
         }
         return createHangGlider(productDto);
+    }
+
+    public ProductDto getProductDto(Product product) {
+        ProductDto productDto = new ProductDto(product.getId(),
+                guildConverter.getGuildDto(product.getGuild()));
+        if (product instanceof HangGlider) {
+            productDto.setType(((HangGlider) product).getType());
+        }
+        if (product instanceof Helicopter) {
+            productDto.setType(((Helicopter) product).getType());
+        }
+        if (product instanceof Plane) {
+            Plane plane = (Plane) product;
+            productDto.setType(plane.getType());
+            productDto.setEngineAmount(plane.getEngineAmount());
+        }
+        if (product instanceof Rocket) {
+            Rocket rocket = (Rocket) product;
+            productDto.setChargePower(rocket.getChargePower());
+            productDto.setType(rocket.getType());
+        }
+        return productDto;
+    }
+
+    public List<ProductDto> getProductDtos(List<? extends Product> products) {
+        if (products == null) {
+            return emptyList();
+        }
+        return products.stream()
+                .map(this::getProductDto).collect(toList());
+    }
+
+    public List<Product> getProducts(List<ProductDto> productDtos) {
+        if (productDtos == null) {
+            return emptyList();
+        }
+        return productDtos.stream()
+                .map(this::getProduct).collect(toList());
     }
 
     private HangGlider createHangGlider(ProductDto productDto) {
@@ -60,26 +103,7 @@ public class ProductConverter {
         Rocket rocket = new Rocket();
         setIdAndGuild(rocket, productDto);
         rocket.setChargePower(productDto.getChargePower());
+        rocket.setType(productDto.getType());
         return rocket;
-    }
-
-    public ProductDto getProductDto(Product product) {
-        ProductDto productDto = new ProductDto(product.getId(),
-                guildConverter.getGuildDto(product.getGuild()));
-        if (product instanceof HangGlider) {
-            productDto.setType(((HangGlider) product).getType());
-        }
-        if (product instanceof Helicopter) {
-            productDto.setType(((Helicopter) product).getType());
-        }
-        if (product instanceof Plane) {
-            Plane plane = (Plane) product;
-            productDto.setType(plane.getType());
-            productDto.setEngineAmount(plane.getEngineAmount());
-        }
-        if (product instanceof Rocket) {
-            productDto.setChargePower(((Rocket) product).getChargePower());
-        }
-        return productDto;
     }
 }

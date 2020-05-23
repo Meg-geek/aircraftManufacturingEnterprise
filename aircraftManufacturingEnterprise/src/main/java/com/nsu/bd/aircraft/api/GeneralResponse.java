@@ -29,4 +29,8 @@ public class GeneralResponse<T> {
         this.data = data;
         this.cause = null;
     }
+
+    public static GeneralResponse<?> ok() {
+        return new GeneralResponse<>(Status.OK);
+    }
 }

@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 @Setter
 @Entity(name = "rocket")
 public class Rocket extends Product {
+    private String type;
+
     @Column(name = "charge_power")
     private int chargePower;
 }
