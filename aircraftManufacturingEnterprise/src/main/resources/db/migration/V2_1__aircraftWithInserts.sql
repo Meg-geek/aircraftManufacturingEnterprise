@@ -179,8 +179,10 @@ create table if not exists rocket
             primary key
         constraint rocket_products_id_fk
             references products
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    type         text
 );
+
 
 alter table rocket
     owner to postgres;
@@ -733,11 +735,11 @@ values (100, 'Airbus A310', 15),
        (1050, 'Boeing-747', 11);
 
 insert into rocket
-values (12, 16),
-       (19, 17),
-       (70, 18),
-       (300, 19),
-       (108, 20);
+values (12, 16, 'артиллерийская'),
+       (19, 17, 'авиационная'),
+       (70, 18, 'военно-морская'),
+       (300, 19, 'военная'),
+       (108, 20, 'исследовательская');
 
 insert into test (guild_id, product_id, range_id, tester_id)
 VALUES (1, 1, 1, 31),

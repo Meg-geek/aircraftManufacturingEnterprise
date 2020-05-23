@@ -175,8 +175,10 @@ create table if not exists rocket
             primary key
         constraint rocket_products_id_fk
             references products
-            on update cascade on delete cascade
+            on update cascade on delete cascade,
+    type         text
 );
+
 
 alter table rocket
     owner to postgres;
