@@ -3,7 +3,6 @@ package com.nsu.bd.aircraft.controller.company;
 import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.Status;
-import com.nsu.bd.aircraft.api.dto.company.CompanyDto;
 import com.nsu.bd.aircraft.api.dto.company.GuildDto;
 import com.nsu.bd.aircraft.service.company.GuildService;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +37,8 @@ public class GuildController {
     }
 
     @GetMapping("/get-by-company")
-    public GeneralResponse<List<GuildDto>> getCompanyGuilds(@RequestBody CompanyDto companyDto) {
+    public GeneralResponse<List<GuildDto>> getCompanyGuilds(@RequestParam("companyId") int companyId) {
         log.info(LOG_INFO + "get company guilds request");
-        return new GeneralResponse<>(guildService.findByCompany(companyDto));
+        return new GeneralResponse<>(guildService.findByCompanyId(companyId));
     }
 }

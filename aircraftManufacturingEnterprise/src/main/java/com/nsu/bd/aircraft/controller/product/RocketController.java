@@ -32,4 +32,21 @@ public class RocketController {
         }
         return new GeneralResponse<>(Status.ERROR, ErrorCause.WRONG_FORMAT);
     }
+
+    @PutMapping("/change")
+    public GeneralResponse<ProductDto> changeRocket(@RequestBody ProductDto changedRocket) {
+        return new GeneralResponse<>(rocketService.changeRocket(changedRocket));
+    }
+
+    @GetMapping("/get-types-by-company-id")
+    public GeneralResponse<List<String>> getTypesByCompanyId(@RequestParam("companyId")
+                                                                     int companyId) {
+        return new GeneralResponse<>(rocketService.getTypesByCompanyId(companyId));
+    }
+
+    @GetMapping("/get-types-by-guild-id")
+    public GeneralResponse<List<String>> getTypesByGuildId(@RequestParam("guildId")
+                                                                   int guildId) {
+        return new GeneralResponse<>(rocketService.getTypesByGuildId(guildId));
+    }
 }

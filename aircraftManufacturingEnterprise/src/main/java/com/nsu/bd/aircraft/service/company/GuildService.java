@@ -1,6 +1,5 @@
 package com.nsu.bd.aircraft.service.company;
 
-import com.nsu.bd.aircraft.api.dto.company.CompanyDto;
 import com.nsu.bd.aircraft.api.dto.company.GuildDto;
 import com.nsu.bd.aircraft.dao.company.GuildDao;
 import com.nsu.bd.aircraft.model.company.Guild;
@@ -30,9 +29,17 @@ public class GuildService {
         return true;
     }
 
-    public List<GuildDto> findByCompany(CompanyDto company) {
+    public Guild addGuild(Guild guild) {
+        Guild foundGuild = guildDao.findByGuildName(guild.getGuildName());
+        if (foundGuild != null) {
+            return foundGuild;
+        }
+        return guildDao.save(guild);
+    }
+
+    public List<GuildDto> findByCompanyId(int companyId) {
         return guildConverter
-                .getGuildDtosList(guildDao.findByCompanyId(company.getId()));
+                .getGuildDtosList(guildDao.findByCompanyId(companyId));
     }
 
     public List<GuildDto> getAllGuilds() {
