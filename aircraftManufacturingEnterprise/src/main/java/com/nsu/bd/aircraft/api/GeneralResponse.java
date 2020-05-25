@@ -33,4 +33,8 @@ public class GeneralResponse<T> {
     public static GeneralResponse<?> ok() {
         return new GeneralResponse<>(Status.OK);
     }
+
+    public static GeneralResponse<?> error(ErrorCause cause) {
+        return new GeneralResponse<>(Status.ERROR, cause);
+    }
 }

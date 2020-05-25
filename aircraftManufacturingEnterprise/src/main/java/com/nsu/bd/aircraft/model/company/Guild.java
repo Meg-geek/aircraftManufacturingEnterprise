@@ -58,7 +58,8 @@ public class Guild {
         this.guildName = guildName;
     }
 
-    public Guild(String guildName, Company company) {
+    public Guild(int id, String guildName, Company company) {
+        this.id = id;
         this.guildName = guildName;
         this.company = company;
     }

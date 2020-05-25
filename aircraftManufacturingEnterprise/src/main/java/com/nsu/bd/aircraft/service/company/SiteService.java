@@ -1,24 +1,33 @@
 package com.nsu.bd.aircraft.service.company;
 
+import com.nsu.bd.aircraft.api.dto.company.SiteDto;
 import com.nsu.bd.aircraft.dao.company.SiteDao;
-import com.nsu.bd.aircraft.model.company.Site;
+import com.nsu.bd.aircraft.service.converters.company.SiteConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SiteService {
     private final SiteDao siteDao;
+    private final SiteConverter siteConverter;
 
-    public void addSite(Site site) {
-        if (isSiteIncorrectInsert(site)) {
-            return;
-        }
-        siteDao.save(site);
+    @Transactional
+    public void addSite(SiteDto siteDto) {
+        siteDao.save(siteConverter.getSite(siteDto));
     }
 
-    private boolean isSiteIncorrectInsert(Site site) {
-        return site == null || site.getWorkType() == null;
+    public List<SiteDto> getAllSites() {
+        return siteConverter.getSiteDtos(siteDao.findAll());
     }
+
+    @Transactional
+    public void deleteById(int id) {
+        siteDao.deleteById(id);
+    }
+
 }

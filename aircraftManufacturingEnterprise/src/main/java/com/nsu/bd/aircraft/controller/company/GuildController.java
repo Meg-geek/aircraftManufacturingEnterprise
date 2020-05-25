@@ -41,4 +41,9 @@ public class GuildController {
         log.info(LOG_INFO + "get company guilds request");
         return new GeneralResponse<>(guildService.findByCompanyId(companyId));
     }
+
+    @DeleteMapping("/delete-by-id")
+    public void deleteById(@RequestParam("guildId") int guildId) {
+        guildService.deleteById(guildId);
+    }
 }

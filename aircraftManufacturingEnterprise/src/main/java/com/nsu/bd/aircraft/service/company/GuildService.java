@@ -7,6 +7,7 @@ import com.nsu.bd.aircraft.service.converters.company.GuildConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -45,5 +46,10 @@ public class GuildService {
     public List<GuildDto> getAllGuilds() {
         return guildConverter
                 .getGuildDtosList(guildDao.findAll());
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        guildDao.deleteById(id);
     }
 }

@@ -30,7 +30,9 @@ public class RocketService {
         if (!(product instanceof Rocket)) {
             return false;
         }
-        rocketDao.save((Rocket) product);
+        Rocket rocket = (Rocket) product;
+        rocket.setGuild(guildService.addGuild(rocket.getGuild()));
+        rocketDao.save(rocket);
         return true;
     }
 

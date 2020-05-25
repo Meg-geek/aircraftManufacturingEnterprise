@@ -1,4 +1,4 @@
-package com.nsu.bd.aircraft.api.dto.staff;
+package com.nsu.bd.aircraft.api.dto.tests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrigadeDto {
+public class RangeDto {
     private int id;
+    private String name;
 }

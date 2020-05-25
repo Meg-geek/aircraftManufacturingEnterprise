@@ -17,6 +17,9 @@ public class Equipment {
 
     private String type;
 
+    @ManyToOne
+    private Range range;
+
     @ManyToMany
     private List<Test> tests;
 }
