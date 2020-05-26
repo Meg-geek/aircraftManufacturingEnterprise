@@ -18,23 +18,23 @@ public class EquipmentController {
     private final EquipmentService equipmentService;
 
     @PostMapping("/add")
-    public GeneralResponse<?> addEquipment(@RequestBody EquipmentDto equipmentDto){
+    public GeneralResponse<?> addEquipment(@RequestBody EquipmentDto equipmentDto) {
         equipmentService.addEquipment(equipmentDto);
         return GeneralResponse.ok();
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("equipmentId") int equipmentId){
+    public void deleteById(@RequestParam("equipmentId") int equipmentId) {
         equipmentService.deleteById(equipmentId);
     }
 
     @GetMapping("/get-all")
-    public GeneralResponse<List<EquipmentDto>> getAllEquipment(){
+    public GeneralResponse<List<EquipmentDto>> getAllEquipment() {
         return new GeneralResponse<>(equipmentService.getllEquipment());
     }
 
     @PutMapping("/update-equipment")
-    public GeneralResponse<?> updateEquipment(@RequestBody EquipmentDto equipmentDto){
+    public GeneralResponse<?> updateEquipment(@RequestBody EquipmentDto equipmentDto) {
         return new GeneralResponse<>(equipmentService.updateEquipment(equipmentDto));
     }
 }

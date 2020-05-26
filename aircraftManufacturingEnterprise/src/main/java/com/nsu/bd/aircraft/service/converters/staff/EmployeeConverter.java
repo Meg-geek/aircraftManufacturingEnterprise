@@ -82,6 +82,13 @@ public class EmployeeConverter {
         return (SiteManager) getEmpoyee(new SiteManager(), employeeDto);
     }
 
+    public Tester getTester(EmployeeDto employeeDto) {
+        if (employeeDto == null) {
+            return null;
+        }
+        return (Tester) getEmpoyee(new Tester(), employeeDto);
+    }
+
     public EmployeeDto getEmployeeDto(Employee employee) {
         if (employee == null) {
             return null;

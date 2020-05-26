@@ -4,6 +4,7 @@ import com.nsu.bd.aircraft.model.company.Guild;
 import com.nsu.bd.aircraft.model.product.Product;
 import com.nsu.bd.aircraft.model.staff.Tester;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity(name = "test")
 public class Test {
     @Id
@@ -22,7 +24,7 @@ public class Test {
     @JoinTable(name = "equipment_test",
             joinColumns = @JoinColumn(name = "test_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id"))
-    private List<Equipment> equipments;
+    private List<Equipment> equipment;
 
     @ManyToOne
     @JoinColumn(name = "guild_id")

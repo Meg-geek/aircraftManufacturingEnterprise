@@ -8,9 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,20 +20,20 @@ public class EquipmentService {
     private final RangeService rangeService;
 
     @Transactional
-    public void addEquipment(EquipmentDto equipmentDto){
+    public void addEquipment(EquipmentDto equipmentDto) {
         equipmentDao.save(equipmentConverter.getEquipment(equipmentDto));
     }
 
-    public void deleteById(int equipmentId){
+    public void deleteById(int equipmentId) {
         equipmentDao.deleteById(equipmentId);
     }
 
-    public List<EquipmentDto> getllEquipment(){
+    public List<EquipmentDto> getllEquipment() {
         return equipmentConverter.getEquipmentDtos(equipmentDao.findAll());
     }
 
     @Transactional
-    public Equipment updateEquipment(EquipmentDto equipmentDto){
+    public Equipment updateEquipment(EquipmentDto equipmentDto) {
         Equipment equipment = equipmentConverter.getEquipment(equipmentDto);
         equipment.setRange(rangeService.addRange(equipment.getRange()));
         return equipmentDao.save(equipment);

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
@@ -17,8 +16,8 @@ import static java.util.stream.Collectors.toList;
 public class EquipmentConverter {
     private final RangeConverter rangeConverter;
 
-    public Equipment getEquipment(EquipmentDto equipmentDto){
-        if(equipmentDto == null){
+    public Equipment getEquipment(EquipmentDto equipmentDto) {
+        if (equipmentDto == null) {
             return null;
         }
         Equipment equipment = new Equipment();
@@ -27,8 +26,8 @@ public class EquipmentConverter {
         return equipment;
     }
 
-    public EquipmentDto getEquipmentDto(Equipment equipment){
-        if(equipment == null){
+    public EquipmentDto getEquipmentDto(Equipment equipment) {
+        if (equipment == null) {
             return null;
         }
         return new EquipmentDto(equipment.getId(),
@@ -36,12 +35,21 @@ public class EquipmentConverter {
                 rangeConverter.getRangeDto(equipment.getRange()));
     }
 
-    public List<EquipmentDto> getEquipmentDtos(List<Equipment> equipmentList){
-        if (equipmentList == null){
+    public List<EquipmentDto> getEquipmentDtos(List<Equipment> equipmentList) {
+        if (equipmentList == null) {
             return emptyList();
         }
         return equipmentList.stream()
                 .map(this::getEquipmentDto)
+                .collect(toList());
+    }
+
+    public List<Equipment> getEquipmentList(List<EquipmentDto> equipmentDtos) {
+        if (equipmentDtos == null) {
+            return emptyList();
+        }
+        return equipmentDtos.stream()
+                .map(this::getEquipment)
                 .collect(toList());
     }
 }
