@@ -1,13 +1,13 @@
 package com.nsu.bd.aircraft.dao.staff;
 
-import com.nsu.bd.aircraft.model.staff.GuildManager;
+import com.nsu.bd.aircraft.model.staff.Welder;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface GuildManagerDao extends CrudRepository<GuildManager, Integer> {
+public interface WelderDao extends CrudRepository<Welder, Integer> {
     @Override
-    List<GuildManager> findAll();
+    List<Welder> findAll();
 }

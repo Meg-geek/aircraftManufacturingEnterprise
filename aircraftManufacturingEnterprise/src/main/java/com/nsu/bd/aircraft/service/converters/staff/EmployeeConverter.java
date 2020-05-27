@@ -7,6 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
+
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeConverter {
@@ -87,6 +92,15 @@ public class EmployeeConverter {
             return null;
         }
         return (Tester) getEmpoyee(new Tester(), employeeDto);
+    }
+
+    public List<EmployeeDto> getEmployeeDtos(List<? extends Employee> employees) {
+        if (employees == null) {
+            return emptyList();
+        }
+        return employees.stream()
+                .map(this::getEmployeeDto)
+                .collect(toList());
     }
 
     public EmployeeDto getEmployeeDto(Employee employee) {
