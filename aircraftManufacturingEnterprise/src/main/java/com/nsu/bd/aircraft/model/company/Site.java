@@ -3,8 +3,8 @@ package com.nsu.bd.aircraft.model.company;
 
 import com.nsu.bd.aircraft.model.staff.Brigade;
 import com.nsu.bd.aircraft.model.staff.Engineer;
+import com.nsu.bd.aircraft.model.staff.EngineeringStaff;
 import com.nsu.bd.aircraft.model.staff.Master;
-import com.nsu.bd.aircraft.model.staff.SiteManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +29,7 @@ public class Site {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "site_manager_id", referencedColumnName = "id")
-    private SiteManager siteManager;
+    private EngineeringStaff siteManager;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "site_id")

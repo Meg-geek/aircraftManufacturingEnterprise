@@ -73,19 +73,6 @@ public class EmployeeConverter {
         return master;
     }
 
-    public GuildManager getGuildManager(EmployeeDto employeeDto) {
-        if (employeeDto == null) {
-            return null;
-        }
-        return (GuildManager) getEmpoyee(new GuildManager(), employeeDto);
-    }
-
-    public SiteManager getSiteManager(EmployeeDto employeeDto) {
-        if (employeeDto == null) {
-            return null;
-        }
-        return (SiteManager) getEmpoyee(new SiteManager(), employeeDto);
-    }
 
     public Tester getTester(EmployeeDto employeeDto) {
         if (employeeDto == null) {

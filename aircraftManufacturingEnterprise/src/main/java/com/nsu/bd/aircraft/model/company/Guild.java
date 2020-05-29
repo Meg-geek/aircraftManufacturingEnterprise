@@ -2,7 +2,7 @@ package com.nsu.bd.aircraft.model.company;
 
 
 import com.nsu.bd.aircraft.model.product.Product;
-import com.nsu.bd.aircraft.model.staff.GuildManager;
+import com.nsu.bd.aircraft.model.staff.EngineeringStaff;
 import com.nsu.bd.aircraft.model.tests.Range;
 import com.nsu.bd.aircraft.model.tests.Test;
 import lombok.Getter;
@@ -29,7 +29,7 @@ public class Guild {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id", referencedColumnName = "id")
-    private GuildManager guildManager;
+    private EngineeringStaff guildManager;
 
     //полигоны
     @ManyToMany(fetch = FetchType.LAZY)

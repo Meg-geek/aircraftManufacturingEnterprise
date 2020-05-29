@@ -60,18 +60,6 @@ create table if not exists engineering_staff
 alter table engineering_staff
     owner to postgres;
 
-create table if not exists guild_manager
-(
-    id serial not null
-        constraint guild_manager_pkey
-            primary key
-        constraint guild_manager_engineering_staff_id_fk
-            references engineering_staff
-            on update cascade on delete cascade
-);
-
-alter table guild_manager
-    owner to postgres;
 
 create table if not exists guild
 (
@@ -83,8 +71,8 @@ create table if not exists guild
             references company
             on update cascade on delete cascade,
     manager_id integer
-        constraint guild_guild_manager_id_fk
-            references guild_manager
+        constraint guild_engineering_staff_id_fk
+            references engineering_staff
             on update cascade on delete cascade,
     guild_name text    not null
 );
@@ -124,8 +112,8 @@ alter table hang_glider
 
 create table if not exists helicopter
 (
-    type varchar(255),
-    id   integer not null
+    type   varchar(255),
+    id     integer not null
         constraint helicopter_pkey
             primary key
         constraint helicopter_products_id_fk
@@ -183,18 +171,7 @@ create table if not exists rocket
 alter table rocket
     owner to postgres;
 
-create table if not exists site_manager
-(
-    id integer not null
-        constraint site_manager_pkey
-            primary key
-        constraint site_manager_engineering_staff_id_fk
-            references engineering_staff
-            on update cascade on delete cascade
-);
 
-alter table site_manager
-    owner to postgres;
 
 create table if not exists site
 (
@@ -206,8 +183,8 @@ create table if not exists site
         constraint site_guild_id_fk
             references guild,
     site_manager_id integer
-        constraint site_site_manager_id_fk
-            references site_manager
+        constraint site_engineering_staff_id_fk
+            references engineering_staff
             on update cascade on delete cascade
 );
 

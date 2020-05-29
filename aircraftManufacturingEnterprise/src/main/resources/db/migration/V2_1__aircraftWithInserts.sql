@@ -64,18 +64,6 @@ create table if not exists engineering_staff
 alter table engineering_staff
     owner to postgres;
 
-create table if not exists guild_manager
-(
-    id integer not null
-        constraint guild_manager_pkey
-            primary key
-        constraint guild_manager_engineering_staff_id_fk
-            references engineering_staff
-            on update cascade on delete cascade
-);
-
-alter table guild_manager
-    owner to postgres;
 
 create table if not exists guild
 (
@@ -87,8 +75,8 @@ create table if not exists guild
             references company
             on update cascade on delete cascade,
     manager_id integer
-        constraint guild_guild_manager_id_fk
-            references guild_manager
+        constraint guild_engineering_staff_id_fk
+            references engineering_staff
             on update cascade on delete cascade,
     guild_name text    not null
 );
@@ -128,8 +116,8 @@ alter table hang_glider
 
 create table if not exists helicopter
 (
-    type varchar(255),
-    id   integer not null
+    type   varchar(255),
+    id     integer not null
         constraint helicopter_pkey
             primary key
         constraint helicopter_products_id_fk
@@ -187,18 +175,6 @@ create table if not exists rocket
 alter table rocket
     owner to postgres;
 
-create table if not exists site_manager
-(
-    id integer not null
-        constraint site_manager_pkey
-            primary key
-        constraint site_manager_engineering_staff_id_fk
-            references engineering_staff
-            on update cascade on delete cascade
-);
-
-alter table site_manager
-    owner to postgres;
 
 create table if not exists site
 (
@@ -210,8 +186,8 @@ create table if not exists site
         constraint site_guild_id_fk
             references guild,
     site_manager_id integer
-        constraint site_site_manager_id_fk
-            references site_manager
+        constraint site_engineering_staff_id_fk
+            references engineering_staff
             on update cascade on delete cascade
 );
 
@@ -533,13 +509,6 @@ values (1),
        (40);
 
 
-insert into guild_manager
-values (1),
-       (2),
-       (3),
-       (4),
-       (5);
-
 insert into guild (company_id, manager_id, guild_name)
 values (1, 1, 'Конвертерный'),
        (2, 2, 'Энергоремонтный'),
@@ -549,12 +518,6 @@ values (1, 1, 'Конвертерный'),
 
 ALTER SEQUENCE guild_id_seq RESTART WITH 6;
 
-insert into site_manager
-values (6),
-       (7),
-       (8),
-       (9),
-       (10);
 
 insert into site (work_type, guild_id, site_manager_id)
 values ('сборка', 1, 6),

@@ -4,6 +4,7 @@ import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.Status;
 import com.nsu.bd.aircraft.api.dto.company.GuildDto;
+import com.nsu.bd.aircraft.api.dto.staff.EmployeeDto;
 import com.nsu.bd.aircraft.service.company.GuildService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -45,5 +46,11 @@ public class GuildController {
     @DeleteMapping("/delete-by-id")
     public void deleteById(@RequestParam("guildId") int guildId) {
         guildService.deleteById(guildId);
+    }
+
+    @GetMapping("/get-guild-manager-by-guild-id")
+    public GeneralResponse<EmployeeDto> getGuildManagerByGuildId(
+            @RequestParam("guildId") int guildId) {
+        return new GeneralResponse<>(new EmployeeDto());
     }
 }
