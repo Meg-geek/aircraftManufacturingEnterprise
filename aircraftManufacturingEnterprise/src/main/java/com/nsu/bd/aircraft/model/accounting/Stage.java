@@ -1,5 +1,6 @@
 package com.nsu.bd.aircraft.model.accounting;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity(name = "stage")
 public class Stage {
     @Id
@@ -18,9 +20,5 @@ public class Stage {
     private String stageName;
 
     protected Stage() {
-    }
-
-    public Stage(String stageName) {
-        this.stageName = stageName;
     }
 }
