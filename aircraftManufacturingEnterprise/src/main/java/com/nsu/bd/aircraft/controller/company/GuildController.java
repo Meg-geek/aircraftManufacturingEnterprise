@@ -44,13 +44,24 @@ public class GuildController {
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("guildId") int guildId) {
+    public GeneralResponse<?> deleteById(@RequestParam("guildId") int guildId) {
         guildService.deleteById(guildId);
+        return GeneralResponse.ok();
     }
 
     @GetMapping("/get-guild-manager-by-guild-id")
     public GeneralResponse<EmployeeDto> getGuildManagerByGuildId(
             @RequestParam("guildId") int guildId) {
-        return new GeneralResponse<>(new EmployeeDto());
+        return new GeneralResponse<>(guildService.findGuildManagerByGuildId(guildId));
+    }
+
+    @GetMapping("/get-managers")
+    public GeneralResponse<List<EmployeeDto>> getGuildManagers() {
+        return new GeneralResponse<>(guildService.getGuildManagers());
+    }
+
+    @PutMapping("/update")
+    public GeneralResponse<GuildDto> updateGuild(@RequestBody GuildDto guildDto) {
+        return new GeneralResponse<>(guildService.updateGuild(guildDto));
     }
 }
