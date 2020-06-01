@@ -1,6 +1,7 @@
 package com.nsu.bd.aircraft.api.dto.staff;
 
 import com.nsu.bd.aircraft.api.dto.company.SiteDto;
+import com.nsu.bd.aircraft.api.dto.tests.RangeDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class EmployeeDto {
     private String surname;
     private BrigadeDto brigade;
     private SiteDto site;
+    private RangeDto range;
 
     public EmployeeDto(String name) {
         this.name = name;

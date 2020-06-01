@@ -3,6 +3,7 @@ package com.nsu.bd.aircraft.service.converters.staff;
 import com.nsu.bd.aircraft.api.dto.staff.EmployeeDto;
 import com.nsu.bd.aircraft.model.staff.*;
 import com.nsu.bd.aircraft.service.converters.company.SiteConverter;
+import com.nsu.bd.aircraft.service.converters.tests.RangeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeConverter {
     private final BrigadeConverter brigadeConverter;
+    private final RangeConverter rangeConverter;
     private final SiteConverter siteConverter;
 
     public Welder getWelder(EmployeeDto employeeDto) {
@@ -78,7 +80,9 @@ public class EmployeeConverter {
         if (employeeDto == null) {
             return null;
         }
-        return (Tester) getEmpoyee(new Tester(), employeeDto);
+        Tester tester = (Tester) getEmpoyee(new Tester(), employeeDto);
+        tester.setRange(rangeConverter.getRange(employeeDto.getRange()));
+        return tester;
     }
 
     public List<EmployeeDto> getEmployeeDtos(List<? extends Employee> employees) {
@@ -118,6 +122,9 @@ public class EmployeeConverter {
             employeeDto.setSite(siteConverter
                     .getSiteDto(((Master) employee).getSite()));
             return employeeDto;
+        }
+        if (employee instanceof Tester) {
+            employeeDto.setRange(rangeConverter.getRangeDto(((Tester) employee).getRange()));
         }
         return employeeDto;
     }
