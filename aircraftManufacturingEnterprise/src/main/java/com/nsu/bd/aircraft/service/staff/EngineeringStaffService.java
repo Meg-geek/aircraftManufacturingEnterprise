@@ -48,6 +48,11 @@ public class EngineeringStaffService {
         return findByIds(managerIds);
     }
 
+    public List<EmployeeDto> getSiteManagers() {
+        List<Integer> managerIds = new ArrayList<>(engineeringStaffDao.getSiteManagerIds());
+        return findByIds(managerIds);
+    }
+
     public List<EmployeeDto> getFreeStaffForGuildManager(int guildId) {
         List<EmployeeDto> freeStaff = getFreeStaff();
         List<EmployeeDto> freeInGuild = new ArrayList<>();

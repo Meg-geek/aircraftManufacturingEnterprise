@@ -2,6 +2,7 @@ package com.nsu.bd.aircraft.controller.company;
 
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.dto.company.SiteDto;
+import com.nsu.bd.aircraft.api.dto.staff.EmployeeDto;
 import com.nsu.bd.aircraft.service.company.SiteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 public class SiteController {
     private final SiteService siteService;
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
     public GeneralResponse<?> addSite(@RequestBody SiteDto site) {
         siteService.addSite(site);
         return GeneralResponse.ok();
@@ -29,5 +30,15 @@ public class SiteController {
     @DeleteMapping("/delete-by-id")
     public void deleteById(@RequestParam("siteId") int siteId) {
         siteService.deleteById(siteId);
+    }
+
+    @PutMapping("/update")
+    public GeneralResponse<SiteDto> update(@RequestBody SiteDto siteDto) {
+        return new GeneralResponse<>(siteService.updateSite(siteDto));
+    }
+
+    @GetMapping("/get-managers")
+    public GeneralResponse<List<EmployeeDto>> getSiteManagers() {
+        return new GeneralResponse<>(siteService.getSiteManagers());
     }
 }
