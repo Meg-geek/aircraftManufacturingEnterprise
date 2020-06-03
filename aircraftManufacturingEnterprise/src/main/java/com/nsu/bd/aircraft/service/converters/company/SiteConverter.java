@@ -17,6 +17,9 @@ public class SiteConverter {
     private final GuildConverter guildConverter;
 
     public Site getSite(SiteDto siteDto) {
+        if (siteDto == null) {
+            return null;
+        }
         Site site = new Site();
         site.setId(siteDto.getId());
         site.setWorkType(siteDto.getWorkType());
@@ -25,6 +28,9 @@ public class SiteConverter {
     }
 
     public SiteDto getSiteDto(Site site) {
+        if (site == null) {
+            return null;
+        }
         return new SiteDto(site.getId(),
                 site.getWorkType(),
                 guildConverter.getGuildDto(site.getGuild()));

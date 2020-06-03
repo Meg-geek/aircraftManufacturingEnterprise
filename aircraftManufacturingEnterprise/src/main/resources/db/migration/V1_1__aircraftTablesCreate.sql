@@ -372,6 +372,9 @@ alter table stage
 
 create table if not exists product_accounting
 (
+    id         serial not null
+        constraint accounting_pkey
+            primary key,
     product_id integer
         constraint product_accounting_products_id_fk
             references products

@@ -400,6 +400,9 @@ alter table stage
 
 create table if not exists product_accounting
 (
+    id         serial not null
+        constraint accounting_pkey
+            primary key,
     product_id integer
         constraint product_accounting_products_id_fk
             references products
@@ -759,6 +762,8 @@ VALUES (1, 1),
        (2, 2),
        (3, 3),
        (4, 4);
+
+alter sequence product_accounting_id_seq restart with 6;
 
 ALTER SEQUENCE company_id_seq RESTART WITH 7;
 
