@@ -39,4 +39,52 @@ public class PlaneController {
                                                                    int guildId) {
         return new GeneralResponse<>(planeService.getTypesByGuildId(guildId));
     }
+
+    @GetMapping("/get-by-date-interval-and-company")
+    public GeneralResponse<List<ProductDto>> getProductsByDateIntervalAndCompany(
+            @RequestParam("companyId") int companyId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(planeService
+                .getProductsByDateIntervalAndCompany(companyId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-guild")
+    public GeneralResponse<List<ProductDto>> getProductsByDateIntervalAndGuild(
+            @RequestParam("guildId") int guildId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(planeService
+                .getProductsByDateIntervalAndGuild(guildId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-site")
+    public GeneralResponse<List<ProductDto>> getProductsByDateIntervalAndSite(
+            @RequestParam("siteId") int siteId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(planeService
+                .getProductsByDateIntervalAndSite(siteId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-now-building-by-company")
+    public GeneralResponse<List<ProductDto>> findNowBuildingByCompany(
+            @RequestParam("id") int id) {
+        return new GeneralResponse<>(planeService
+                .findNowBuildingByCompany(id));
+    }
+
+    @GetMapping("/get-now-building-by-guild")
+    public GeneralResponse<List<ProductDto>> findNowBuildingByGuild(
+            @RequestParam("id") int id) {
+        return new GeneralResponse<>(planeService
+                .findNowBuildingByGuild(id));
+    }
+
+    @GetMapping("/get-now-building-by-site")
+    public GeneralResponse<List<ProductDto>> findNowBuildingBySite(
+            @RequestParam("id") int id) {
+        return new GeneralResponse<>(planeService
+                .findNowBuildingBySite(id));
+    }
 }

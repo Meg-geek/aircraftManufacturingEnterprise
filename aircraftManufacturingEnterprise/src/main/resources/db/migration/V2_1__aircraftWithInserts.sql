@@ -756,6 +756,14 @@ VALUES (1, 1, 1, 1, '1970-01-01 00:00:01', '2000-01-08'),
        (4, 4, 4, 4, '2020-01-08', current_timestamp),
        (5, 5, 5, 5, current_timestamp, NULL);
 
+insert into product_accounting (product_id, stage_id, site_id, begin_time)
+VALUES (11, 1, 1, '2020-05-20'),
+       (16, 2, 1, '2020-05-20'),
+       (20, 3, 5, '2020-05-20'),
+       (9, 4, 4, '2020-05-20'),
+       (4, 5, 4, '2020-05-20');
+
+
 insert into range_guild (range_id, guild_id)
 VALUES (1, 1),
        (1, 2),
@@ -763,7 +771,7 @@ VALUES (1, 1),
        (3, 3),
        (4, 4);
 
-alter sequence product_accounting_id_seq restart with 6;
+alter sequence product_accounting_id_seq restart with 11;
 
 ALTER SEQUENCE company_id_seq RESTART WITH 7;
 
@@ -779,5 +787,4 @@ ALTER SEQUENCE equipment_id_seq RESTART WITH 6;
 
 ALTER SEQUENCE range_id_seq RESTART WITH 6;
 ALTER SEQUENCE brigade_id_seq RESTART WITH 6;
-
 

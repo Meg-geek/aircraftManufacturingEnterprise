@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -36,5 +37,65 @@ public class PlaneService {
 
     public List<String> getTypesByGuildId(int guildId) {
         return planeDao.findTypesByGuildId(guildId);
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndCompany(int companyId,
+                                                                long beginDate,
+                                                                long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(planeDao.findByDateIntervalAndCompany(companyId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(planeDao
+                        .findByDateIntervalAndCompany(companyId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndSite(int siteId,
+                                                             long beginDate,
+                                                             long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(planeDao.findByDateIntervalAndSite(siteId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(planeDao
+                        .findByDateIntervalAndSite(siteId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndGuild(int guildId,
+                                                              long beginDate,
+                                                              long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(planeDao.findByDateIntervalAndGuild(guildId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(planeDao
+                        .findByDateIntervalAndGuild(guildId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> findNowBuildingByCompany(int companyId) {
+        return productConverter.getProductDtos(
+                planeDao.findNowBuildingByCompany(companyId));
+    }
+
+    public List<ProductDto> findNowBuildingByGuild(int guildId) {
+        return productConverter.getProductDtos(
+                planeDao.findNowBuildingByGuild(guildId));
+    }
+
+    public List<ProductDto> findNowBuildingBySite(int siteId) {
+        return productConverter.getProductDtos(
+                planeDao.findNowBuildingBySite(siteId));
     }
 }

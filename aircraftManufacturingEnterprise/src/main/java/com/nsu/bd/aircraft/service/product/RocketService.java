@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -49,5 +50,65 @@ public class RocketService {
 
     public List<String> getTypesByGuildId(int guildId) {
         return rocketDao.findTypesByGuildId(guildId);
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndCompany(int companyId,
+                                                                long beginDate,
+                                                                long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(rocketDao.findByDateIntervalAndCompany(companyId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(rocketDao
+                        .findByDateIntervalAndCompany(companyId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndGuild(int guildId,
+                                                              long beginDate,
+                                                              long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(rocketDao.findByDateIntervalAndGuild(guildId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(rocketDao
+                        .findByDateIntervalAndGuild(guildId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> getProductsByDateIntervalAndSite(int siteId,
+                                                             long beginDate,
+                                                             long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(rocketDao.findByDateIntervalAndSite(siteId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(rocketDao
+                        .findByDateIntervalAndSite(siteId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
+
+    public List<ProductDto> findNowBuildingByCompany(int companyId) {
+        return productConverter.getProductDtos(
+                rocketDao.findNowBuildingByCompany(companyId));
+    }
+
+    public List<ProductDto> findNowBuildingByGuild(int guildId) {
+        return productConverter.getProductDtos(
+                rocketDao.findNowBuildingByGuild(guildId));
+    }
+
+    public List<ProductDto> findNowBuildingBySite(int siteId) {
+        return productConverter.getProductDtos(
+                rocketDao.findNowBuildingBySite(siteId));
     }
 }
