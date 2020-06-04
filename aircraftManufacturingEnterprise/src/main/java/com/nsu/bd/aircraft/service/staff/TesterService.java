@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TesterService implements StaffService {
@@ -40,5 +42,15 @@ public class TesterService implements StaffService {
                 .getEmployeeDto(testerDao
                         .save(employeeConverter
                                 .getTester(employeeDto)));
+    }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return emptyList();
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return emptyList();
     }
 }

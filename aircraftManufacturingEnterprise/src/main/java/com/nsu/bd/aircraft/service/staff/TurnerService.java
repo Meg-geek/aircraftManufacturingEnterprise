@@ -41,4 +41,16 @@ public class TurnerService implements StaffService {
                         .save(employeeConverter
                                 .getTurner(employeeDto)));
     }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return employeeConverter
+                .getEmployeeDtos(turnerDao.getByCompany(companyId));
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return employeeConverter
+                .getEmployeeDtos(turnerDao.getByGuild(guildId));
+    }
 }

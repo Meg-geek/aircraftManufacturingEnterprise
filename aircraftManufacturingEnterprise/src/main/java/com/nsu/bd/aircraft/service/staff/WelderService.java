@@ -41,4 +41,16 @@ public class WelderService implements StaffService {
                         .save(employeeConverter
                                 .getWelder(employeeDto)));
     }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return employeeConverter
+                .getEmployeeDtos(welderDao.getByCompany(companyId));
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return employeeConverter
+                .getEmployeeDtos(welderDao.getByGuild(guildId));
+    }
 }

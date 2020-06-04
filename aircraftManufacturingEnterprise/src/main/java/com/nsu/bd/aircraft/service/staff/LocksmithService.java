@@ -41,4 +41,16 @@ public class LocksmithService implements StaffService {
                         .save(employeeConverter
                                 .getLocksmith(employeeDto)));
     }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return employeeConverter
+                .getEmployeeDtos(locksmithDao.getByCompany(companyId));
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return employeeConverter
+                .getEmployeeDtos(locksmithDao.getByGuild(guildId));
+    }
 }

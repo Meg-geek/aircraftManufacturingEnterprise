@@ -17,4 +17,8 @@ public interface StaffService {
 
     @Transactional
     EmployeeDto update(EmployeeDto employeeDto);
+
+    List<EmployeeDto> getByCompany(int companyId);
+
+    List<EmployeeDto> getByGuild(int guildId);
 }

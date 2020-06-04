@@ -41,4 +41,16 @@ public class TechnicianService implements StaffService {
                         .save(employeeConverter
                                 .getTechnician(employeeDto)));
     }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return employeeConverter
+                .getEmployeeDtos(technicianDao.getByCompany(companyId));
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return employeeConverter
+                .getEmployeeDtos(technicianDao.getByGuild(guildId));
+    }
 }

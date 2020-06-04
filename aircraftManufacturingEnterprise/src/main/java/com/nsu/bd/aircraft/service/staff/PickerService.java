@@ -41,4 +41,16 @@ public class PickerService implements StaffService {
                         .save(employeeConverter
                                 .getPicker(employeeDto)));
     }
+
+    @Override
+    public List<EmployeeDto> getByCompany(int companyId) {
+        return employeeConverter
+                .getEmployeeDtos(pickerDao.getByCompany(companyId));
+    }
+
+    @Override
+    public List<EmployeeDto> getByGuild(int guildId) {
+        return employeeConverter
+                .getEmployeeDtos(pickerDao.getByGuild(guildId));
+    }
 }

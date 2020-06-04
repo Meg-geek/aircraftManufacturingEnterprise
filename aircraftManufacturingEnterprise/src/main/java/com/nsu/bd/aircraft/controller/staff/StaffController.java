@@ -37,4 +37,16 @@ public class StaffController {
     public GeneralResponse<EmployeeDto> update(@RequestBody EmployeeDto employeeDto) {
         return new GeneralResponse<>(staffService.update(employeeDto));
     }
+
+    @GetMapping("/get-by-company")
+    public GeneralResponse<List<EmployeeDto>> getByCompany(
+            @RequestParam("companyId") int companyId) {
+        return new GeneralResponse<>(staffService.getByCompany(companyId));
+    }
+
+    @GetMapping("/get-by-guild")
+    public GeneralResponse<List<EmployeeDto>> getByGuild(
+            @RequestParam("guildId") int guildId) {
+        return new GeneralResponse<>(staffService.getByGuild(guildId));
+    }
 }
