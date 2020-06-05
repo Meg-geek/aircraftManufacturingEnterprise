@@ -39,4 +39,11 @@ public class ProductAccountingController {
     public GeneralResponse<ProductAccountingDto> update(@RequestBody ProductAccountingDto accountingDto) {
         return new GeneralResponse<>(accountingService.update(accountingDto));
     }
+
+    @GetMapping("/get-work-types-by-product-id")
+    public GeneralResponse<List<String>> getProductWorkTypesByProductId(
+            @RequestParam("productId") int productId) {
+        return new GeneralResponse<>(accountingService
+                .getProductWorkTypesByProductId(productId));
+    }
 }

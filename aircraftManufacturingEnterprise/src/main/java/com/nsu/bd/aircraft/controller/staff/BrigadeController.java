@@ -37,4 +37,22 @@ public class BrigadeController {
     public GeneralResponse<BrigadeDto> updateBrigade(@RequestBody BrigadeDto brigadeDto) {
         return new GeneralResponse<>(brigadeService.updateBrigade(brigadeDto));
     }
+
+    @GetMapping("/get-by-site-id")
+    public GeneralResponse<List<BrigadeDto>> getBrigadesBySiteId(
+            @RequestParam("siteId") int siteId) {
+        return new GeneralResponse<>(brigadeService.getBrigadesBySiteId(siteId));
+    }
+
+    @GetMapping("/get-by-guild-id")
+    public GeneralResponse<List<BrigadeDto>> getBrigadesByGuildId(
+            @RequestParam("guildId") int guildId) {
+        return new GeneralResponse<>(brigadeService.getBrigadesByGuildId(guildId));
+    }
+
+    @GetMapping("/get-by-product-id")
+    public GeneralResponse<List<BrigadeDto>> getBrigadesByProductId(
+            @RequestParam("productId") int productId) {
+        return new GeneralResponse<>(brigadeService.getBrigadesByProductId(productId));
+    }
 }

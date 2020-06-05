@@ -37,4 +37,10 @@ public class RangeController {
     public GeneralResponse<RangeDto> updateRange(@RequestBody RangeDto rangeDto) {
         return new GeneralResponse<>(rangeService.updateRange(rangeDto));
     }
+
+    @GetMapping("/get-by-product-id")
+    public GeneralResponse<List<RangeDto>> getByProductId(
+            @RequestParam("productId") int productId) {
+        return new GeneralResponse<>(rangeService.getByProductId(productId));
+    }
 }
