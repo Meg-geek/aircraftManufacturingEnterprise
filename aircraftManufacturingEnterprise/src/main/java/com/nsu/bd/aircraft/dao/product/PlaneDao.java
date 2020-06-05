@@ -86,4 +86,16 @@ public interface PlaneDao extends CrudRepository<Plane, Integer> {
             "  and company_id = :companyId",
             nativeQuery = true)
     List<Plane> findNowBuildingByCompany(@Param("companyId") int companyId);
+
+    @Query(value = "select plane.id, plane.engine_amount, plane.type, " +
+            "p.guild_id from plane\n" +
+            "left join product_accounting on plane.id = product_accounting.product_id\n" +
+            "left join test on product_accounting.test_id = test.id\n" +
+            "left join products p on plane.id = p.id\n" +
+            "where range_id = :rangeId and " +
+            "(begin_time, end_time) OVERLAPS ( :beginDate , :endDate )",
+            nativeQuery = true)
+    List<Plane> findByDateIntervalAndRange(@Param("rangeId") int rangeId,
+                                           @Param("beginDate") Date beginDate,
+                                           @Param("endDate") Date endDate);
 }

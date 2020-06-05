@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -37,5 +38,67 @@ public class EquipmentService {
         Equipment equipment = equipmentConverter.getEquipment(equipmentDto);
         equipment.setRange(rangeService.addRange(equipment.getRange()));
         return equipmentDao.save(equipment);
+    }
+
+    public List<EquipmentDto> getByProductAndRangeAndDateInterval(int productId,
+                                                                  int rangeId,
+                                                                  long beginDate,
+                                                                  long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByProductAndRangeAndDateInterval(productId, rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
+    }
+
+    private Date getEndDate(long endDate) {
+        if (endDate == 0) {
+            return new Date(System.currentTimeMillis());
+        }
+        return new Date(endDate);
+    }
+
+    public List<EquipmentDto> getByRangeAndDateIntervalAndRocket(int rangeId,
+                                                                 long beginDate,
+                                                                 long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByRangeAndDateIntervalAndRocket(rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
+    }
+
+    public List<EquipmentDto> getByRangeAndDateIntervalAndPlane(int rangeId,
+                                                                long beginDate,
+                                                                long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByRangeAndDateIntervalAndPlane(rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
+    }
+
+    public List<EquipmentDto> getByRangeAndDateIntervalAndHelicopter(int rangeId,
+                                                                     long beginDate,
+                                                                     long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByRangeAndDateIntervalAndHelicopter(rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
+    }
+
+    public List<EquipmentDto> getByRangeAndDateIntervalAndHangGlider(int rangeId,
+                                                                     long beginDate,
+                                                                     long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByRangeAndDateIntervalAndHangGlider(rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
+    }
+
+    public List<EquipmentDto> getByRangeAndDateInterval(int rangeId,
+                                                        long beginDate,
+                                                        long endDate) {
+        return equipmentConverter
+                .getEquipmentDtos(equipmentDao
+                        .getByRangeAndDateInterval(rangeId,
+                                new Date(beginDate), getEndDate(endDate)));
     }
 }

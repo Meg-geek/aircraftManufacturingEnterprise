@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -52,5 +53,97 @@ public class TesterService implements StaffService {
     @Override
     public List<EmployeeDto> getByGuild(int guildId) {
         return emptyList();
+    }
+
+    public List<EmployeeDto> getByProductAndRangeAndDateInterval(
+            int productId,
+            int rangeId,
+            long beginDate,
+            long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByProductAndRangeAndDateInterval(productId, rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByProductAndRangeAndDateInterval(productId, rangeId,
+                                new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRangeAndDateIntervalAndHangGlider(int rangeId,
+                                                                    long beginDate,
+                                                                    long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByRangeAndDateIntervalAndHangGlider(rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByRangeAndDateIntervalAndHangGlider(rangeId,
+                                new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRangeAndDateIntervalAndHelicopter(int rangeId,
+                                                                    long beginDate,
+                                                                    long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByRangeAndDateIntervalAndHelicopter(rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByRangeAndDateIntervalAndHelicopter(rangeId,
+                                new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRangeAndDateIntervalAndPlane(int rangeId,
+                                                               long beginDate,
+                                                               long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByRangeAndDateIntervalAndPlane(rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByRangeAndDateIntervalAndPlane(rangeId,
+                                new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRangeAndDateIntervalAndRocket(int rangeId,
+                                                                long beginDate,
+                                                                long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByRangeAndDateIntervalAndRocket(rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByRangeAndDateIntervalAndRocket(rangeId,
+                                new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRangeAndDateInterval(int rangeId,
+                                                       long beginDate,
+                                                       long endDate) {
+        if (endDate == 0) {
+            return employeeConverter
+                    .getEmployeeDtos(testerDao
+                            .getByRangeAndDateInterval(rangeId,
+                                    new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return employeeConverter
+                .getEmployeeDtos(testerDao
+                        .getByRangeAndDateInterval(rangeId,
+                                new Date(beginDate), new Date(endDate)));
     }
 }

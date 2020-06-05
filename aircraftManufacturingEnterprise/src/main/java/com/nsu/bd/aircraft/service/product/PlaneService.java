@@ -98,4 +98,19 @@ public class PlaneService {
         return productConverter.getProductDtos(
                 planeDao.findNowBuildingBySite(siteId));
     }
+
+    public List<ProductDto> findByDateIntervalAndRange(int rangeId,
+                                                       long beginDate,
+                                                       long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(planeDao.findByDateIntervalAndRange(rangeId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(planeDao
+                        .findByDateIntervalAndRange(rangeId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
 }

@@ -65,4 +65,9 @@ public class SiteService {
         List<Site> sites = siteDao.findByGuild(guildConverter.getGuild(guildDto));
         return siteConverter.getSiteDtos(sites);
     }
+
+    public List<SiteDto> getByCompanyId(int companyId) {
+        return siteConverter
+                .getSiteDtos(siteDao.getByCompanyId(companyId));
+    }
 }

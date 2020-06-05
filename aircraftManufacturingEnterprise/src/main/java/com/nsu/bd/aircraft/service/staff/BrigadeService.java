@@ -37,4 +37,19 @@ public class BrigadeService {
                         .save(brigadeConverter
                                 .getBrigade(brigadeDto)));
     }
+
+    public List<BrigadeDto> getBrigadesBySiteId(int siteId) {
+        return brigadeConverter
+                .getBrigadeDtos(brigadeDao.getBrigadesBySiteId(siteId));
+    }
+
+    public List<BrigadeDto> getBrigadesByGuildId(int guildId) {
+        return brigadeConverter
+                .getBrigadeDtos(brigadeDao.getBrigadesByGuildId(guildId));
+    }
+
+    public List<BrigadeDto> getBrigadesByProductId(int productId) {
+        return brigadeConverter
+                .getBrigadeDtos(brigadeDao.getBrigadesByProductId(productId));
+    }
 }

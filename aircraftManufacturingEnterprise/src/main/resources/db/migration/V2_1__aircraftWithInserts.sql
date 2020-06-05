@@ -727,6 +727,12 @@ values (12, 16, 'артиллерийская'),
        (108, 20, 'исследовательская');
 
 insert into test (guild_id, product_id, range_id, tester_id)
+VALUES (2, 2, 2, 31),
+       (3, 18, 3, 32),
+       (4, 12, 4, 33),
+       (5, 10, 5, 34);
+
+insert into test (guild_id, product_id, range_id, tester_id)
 VALUES (1, 1, 1, 31),
        (2, 2, 2, 32),
        (3, 3, 3, 33),
@@ -750,11 +756,11 @@ values ('разработка аванпроекта'),
 
 
 insert into product_accounting (product_id, stage_id, site_id, test_id, begin_time, end_time)
-VALUES (1, 1, 1, 1, '1970-01-01 00:00:01', '2000-01-08'),
-       (2, 2, 2, 2, '2018-04-08', '2019-01-08'),
-       (3, 3, 3, 3, '2003-01-08', '2005-01-08'),
-       (4, 4, 4, 4, '2020-01-08', current_timestamp),
-       (5, 5, 5, 5, current_timestamp, NULL);
+VALUES (1, 1, 1, 5, '1970-01-01 00:00:01', '2000-01-08'),
+       (2, 2, 2, 6, '2018-04-08', '2019-01-08'),
+       (3, 3, 3, 7, '2003-01-08', '2005-01-08'),
+       (4, 4, 4, 8, '2020-01-08', current_timestamp),
+       (5, 5, 5, 9, current_timestamp, NULL);
 
 insert into product_accounting (product_id, stage_id, site_id, begin_time)
 VALUES (11, 1, 1, '2020-05-20'),
@@ -762,6 +768,12 @@ VALUES (11, 1, 1, '2020-05-20'),
        (20, 3, 5, '2020-05-20'),
        (9, 4, 4, '2020-05-20'),
        (4, 5, 4, '2020-05-20');
+
+insert into product_accounting (product_id, stage_id, site_id, begin_time, test_id)
+VALUES (2, 1, 2, '2020-05-20', 6),
+       (18, 2, 3, '2020-05-20', 2),
+       (12, 3, 4, '2020-05-20', 3),
+       (10, 4, 5, '2020-05-20', 4);
 
 
 insert into range_guild (range_id, guild_id)
@@ -771,7 +783,7 @@ VALUES (1, 1),
        (3, 3),
        (4, 4);
 
-alter sequence product_accounting_id_seq restart with 11;
+alter sequence product_accounting_id_seq restart with 15;
 
 ALTER SEQUENCE company_id_seq RESTART WITH 7;
 
@@ -779,7 +791,7 @@ ALTER SEQUENCE staff_id_seq RESTART WITH 41;
 
 ALTER SEQUENCE stage_id_seq RESTART WITH 6;
 
-ALTER SEQUENCE test_id_seq RESTART WITH 6;
+ALTER SEQUENCE test_id_seq RESTART WITH 10;
 
 ALTER SEQUENCE products_id_seq RESTART WITH 21;
 

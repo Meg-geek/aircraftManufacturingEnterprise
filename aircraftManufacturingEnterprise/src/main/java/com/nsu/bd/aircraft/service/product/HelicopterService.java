@@ -99,4 +99,19 @@ public class HelicopterService {
         return productConverter.getProductDtos(
                 helicopterDao.findNowBuildingBySite(siteId));
     }
+
+    public List<ProductDto> findByDateIntervalAndRange(int rangeId,
+                                                       long beginDate,
+                                                       long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(helicopterDao.findByDateIntervalAndRange(rangeId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(helicopterDao
+                        .findByDateIntervalAndRange(rangeId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
 }

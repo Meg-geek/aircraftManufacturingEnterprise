@@ -45,4 +45,9 @@ public class RangeService {
                         .save(rangeConverter
                                 .getRange(rangeDto)));
     }
+
+    public List<RangeDto> getByProductId(int productId) {
+        return rangeConverter
+                .getRangeDtos(rangeDao.getByProductId(productId));
+    }
 }

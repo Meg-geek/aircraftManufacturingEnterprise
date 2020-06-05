@@ -86,4 +86,16 @@ public interface HelicopterDao extends CrudRepository<Helicopter, Integer> {
             "  and company_id = :companyId",
             nativeQuery = true)
     List<Helicopter> findNowBuildingByCompany(@Param("companyId") int companyId);
+
+    @Query(value = "select helicopter.id, helicopter.weight, helicopter.type, " +
+            "p.guild_id from helicopter\n" +
+            "left join product_accounting on helicopter.id = product_accounting.product_id\n" +
+            "left join test on product_accounting.test_id = test.id\n" +
+            "left join products p on helicopter.id = p.id\n" +
+            "where range_id = :rangeId and " +
+            "(begin_time, end_time) OVERLAPS ( :beginDate , :endDate )",
+            nativeQuery = true)
+    List<Helicopter> findByDateIntervalAndRange(@Param("rangeId") int rangeId,
+                                                @Param("beginDate") Date beginDate,
+                                                @Param("endDate") Date endDate);
 }

@@ -87,4 +87,13 @@ public class HangGliderController {
         return new GeneralResponse<>(hangGliderService
                 .findNowBuildingBySite(id));
     }
+
+    @GetMapping("/get-by-date-interval-and-range")
+    public GeneralResponse<List<ProductDto>> findByDateIntervalAndRange(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(hangGliderService
+                .findByDateIntervalAndRange(rangeId, beginDate, endDate));
+    }
 }

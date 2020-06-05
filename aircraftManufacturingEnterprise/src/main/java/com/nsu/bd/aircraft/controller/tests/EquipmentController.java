@@ -37,4 +37,59 @@ public class EquipmentController {
     public GeneralResponse<?> updateEquipment(@RequestBody EquipmentDto equipmentDto) {
         return new GeneralResponse<>(equipmentService.updateEquipment(equipmentDto));
     }
+
+    @GetMapping("get-by-date-interval-and-product-and-range")
+    public GeneralResponse<List<EquipmentDto>> getByProductAndRangeAndDateInterval(
+            @RequestParam("productId") int productId,
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByProductAndRangeAndDateInterval(productId, rangeId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-range-and-hang-glider")
+    public GeneralResponse<List<EquipmentDto>> getByRangeAndDateIntervalAndHangGlider(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByRangeAndDateIntervalAndHangGlider(rangeId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-range-and-helicopter")
+    public GeneralResponse<List<EquipmentDto>> getByRangeAndDateIntervalAndHelicopter(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByRangeAndDateIntervalAndHelicopter(rangeId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-range-and-plane")
+    public GeneralResponse<List<EquipmentDto>> getByRangeAndDateIntervalAndPlane(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByRangeAndDateIntervalAndPlane(rangeId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-range-and-rocket")
+    public GeneralResponse<List<EquipmentDto>> getByRangeAndDateIntervalAndRocket(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByRangeAndDateIntervalAndRocket(rangeId, beginDate, endDate));
+    }
+
+    @GetMapping("/get-by-date-interval-and-range")
+    public GeneralResponse<List<EquipmentDto>> getByRangeAndDateInterval(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(equipmentService
+                .getByRangeAndDateInterval(rangeId, beginDate, endDate));
+    }
 }

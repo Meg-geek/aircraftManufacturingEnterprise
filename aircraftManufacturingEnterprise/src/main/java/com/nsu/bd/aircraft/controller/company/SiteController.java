@@ -64,4 +64,10 @@ public class SiteController {
     public GeneralResponse<List<SiteDto>> getSitesByGuild(@RequestBody GuildDto guildDto) {
         return new GeneralResponse<>(siteService.getByGuild(guildDto));
     }
+
+    @GetMapping("/get-by-company-id")
+    public GeneralResponse<List<SiteDto>> getSitesByCompanyId(
+            @RequestParam("companyId") int companyId) {
+        return new GeneralResponse<>(siteService.getByCompanyId(companyId));
+    }
 }

@@ -98,4 +98,19 @@ public class HangGliderService {
         return productConverter.getProductDtos(
                 hangGliderDao.findNowBuildingBySite(siteId));
     }
+
+    public List<ProductDto> findByDateIntervalAndRange(int rangeId,
+                                                       long beginDate,
+                                                       long endDate) {
+        if (endDate == 0) {
+            return productConverter
+                    .getProductDtos(hangGliderDao.findByDateIntervalAndRange(rangeId,
+                            new Date(beginDate), new Date(System.currentTimeMillis())));
+        }
+        return productConverter
+                .getProductDtos(hangGliderDao
+                        .findByDateIntervalAndRange(rangeId,
+                                new Date(beginDate),
+                                new Date(endDate)));
+    }
 }

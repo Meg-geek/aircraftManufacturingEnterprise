@@ -85,4 +85,16 @@ public interface RocketDao extends CrudRepository<Rocket, Integer> {
             "  and company_id = :companyId",
             nativeQuery = true)
     List<Rocket> findNowBuildingByCompany(@Param("companyId") int companyId);
+
+    @Query(value = "select rocket.id, rocket.charge_power, rocket.type, " +
+            "p.guild_id from rocket\n" +
+            "left join product_accounting on rocket.id = product_accounting.product_id\n" +
+            "left join test on product_accounting.test_id = test.id\n" +
+            "left join products p on rocket.id = p.id\n" +
+            "where range_id = :rangeId and " +
+            "(begin_time, end_time) OVERLAPS ( :beginDate , :endDate )",
+            nativeQuery = true)
+    List<Rocket> findByDateIntervalAndRange(@Param("rangeId") int rangeId,
+                                            @Param("beginDate") Date beginDate,
+                                            @Param("endDate") Date endDate);
 }

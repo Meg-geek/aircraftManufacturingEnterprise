@@ -97,4 +97,13 @@ public class RocketController {
         return new GeneralResponse<>(rocketService
                 .findNowBuildingBySite(id));
     }
+
+    @GetMapping("/get-by-date-interval-and-range")
+    public GeneralResponse<List<ProductDto>> findByDateIntervalAndRange(
+            @RequestParam("rangeId") int rangeId,
+            @RequestParam("beginDate") long beginDate,
+            @RequestParam("endDate") long endDate) {
+        return new GeneralResponse<>(rocketService
+                .findByDateIntervalAndRange(rangeId, beginDate, endDate));
+    }
 }

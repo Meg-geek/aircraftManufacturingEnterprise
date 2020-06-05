@@ -85,4 +85,16 @@ public interface HangGliderDao extends CrudRepository<HangGlider, Integer> {
             "  and company_id = :companyId",
             nativeQuery = true)
     List<HangGlider> findNowBuildingByCompany(@Param("companyId") int companyId);
+
+    @Query(value = "select hang_glider.id, hang_glider.type, " +
+            "p.guild_id from hang_glider\n" +
+            "left join product_accounting on hang_glider.id = product_accounting.product_id\n" +
+            "left join test on product_accounting.test_id = test.id\n" +
+            "left join products p on hang_glider.id = p.id\n" +
+            "where range_id = :rangeId and " +
+            "(begin_time, end_time) OVERLAPS ( :beginDate , :endDate )",
+            nativeQuery = true)
+    List<HangGlider> findByDateIntervalAndRange(@Param("rangeId") int rangeId,
+                                                @Param("beginDate") Date beginDate,
+                                                @Param("endDate") Date endDate);
 }

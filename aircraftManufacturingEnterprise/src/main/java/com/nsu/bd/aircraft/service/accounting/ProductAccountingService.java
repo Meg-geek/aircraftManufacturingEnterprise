@@ -36,4 +36,8 @@ public class ProductAccountingService {
                         .save(converter
                                 .getProductAccounting(accountingDto)));
     }
+
+    public List<String> getProductWorkTypesByProductId(int productId) {
+        return productAccountingDao.getProductWorkTypesByProductId(productId);
+    }
 }
