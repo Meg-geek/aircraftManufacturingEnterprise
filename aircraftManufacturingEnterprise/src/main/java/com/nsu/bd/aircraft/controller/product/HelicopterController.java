@@ -23,7 +23,7 @@ public class HelicopterController {
         return new GeneralResponse<>(helicopterService.getAllHelicopters());
     }
 
-    @PutMapping("/change")
+    @PutMapping("/update")
     public GeneralResponse<ProductDto> changeHelicopter(@RequestBody ProductDto changedHelicopter) {
         return new GeneralResponse<>(helicopterService.changeHelicopter(changedHelicopter));
     }

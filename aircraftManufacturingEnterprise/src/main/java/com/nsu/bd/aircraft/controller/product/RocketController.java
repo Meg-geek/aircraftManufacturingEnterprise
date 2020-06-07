@@ -33,7 +33,7 @@ public class RocketController {
         return new GeneralResponse<>(Status.ERROR, ErrorCause.WRONG_FORMAT);
     }
 
-    @PutMapping("/change")
+    @PutMapping("/update")
     public GeneralResponse<ProductDto> changeRocket(@RequestBody ProductDto changedRocket) {
         return new GeneralResponse<>(rocketService.changeRocket(changedRocket));
     }

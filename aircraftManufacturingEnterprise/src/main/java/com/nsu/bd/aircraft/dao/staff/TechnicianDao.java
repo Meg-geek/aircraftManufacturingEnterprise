@@ -14,16 +14,16 @@ public interface TechnicianDao extends CrudRepository<Technician, Integer> {
     List<Technician> findAll();
 
     @Query(value = "select staff.id, name, surname, site_id from technicians\n" +
-            "    left join staff on staff.id = engineers.id\n" +
-            "    left join site on engineers.site_id = site.id\n" +
+            "    left join staff on staff.id = technicians.id\n" +
+            "    left join site on technicians.site_id = site.id\n" +
             "    left join guild on guild.id = site.guild_id\n" +
             "where guild.company_id = :companyId",
             nativeQuery = true)
     List<Technician> getByCompany(@Param("companyId") int companyId);
 
     @Query(value = "select staff.id, name, surname, site_id from technicians\n" +
-            "    left join staff on staff.id = engineers.id\n" +
-            "    left join site on engineers.site_id = site.id\n" +
+            "    left join staff on staff.id = technicians.id\n" +
+            "    left join site on technicians.site_id = site.id\n" +
             "where site.guild_id = :guildId",
             nativeQuery = true)
     List<Technician> getByGuild(@Param("guildId") int guildId);

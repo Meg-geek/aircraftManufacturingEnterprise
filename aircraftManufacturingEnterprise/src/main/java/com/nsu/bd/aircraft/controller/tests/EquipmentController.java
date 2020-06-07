@@ -24,8 +24,9 @@ public class EquipmentController {
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("equipmentId") int equipmentId) {
+    public GeneralResponse<?> deleteById(@RequestParam("equipmentId") int equipmentId) {
         equipmentService.deleteById(equipmentId);
+        return GeneralResponse.ok();
     }
 
     @GetMapping("/get-all")
@@ -33,12 +34,12 @@ public class EquipmentController {
         return new GeneralResponse<>(equipmentService.getllEquipment());
     }
 
-    @PutMapping("/update-equipment")
+    @PutMapping("/update")
     public GeneralResponse<?> updateEquipment(@RequestBody EquipmentDto equipmentDto) {
         return new GeneralResponse<>(equipmentService.updateEquipment(equipmentDto));
     }
 
-    @GetMapping("get-by-date-interval-and-product-and-range")
+    @GetMapping("/get-by-date-interval-and-product-and-range")
     public GeneralResponse<List<EquipmentDto>> getByProductAndRangeAndDateInterval(
             @RequestParam("productId") int productId,
             @RequestParam("rangeId") int rangeId,
@@ -71,6 +72,7 @@ public class EquipmentController {
             @RequestParam("rangeId") int rangeId,
             @RequestParam("beginDate") long beginDate,
             @RequestParam("endDate") long endDate) {
+        log.info("get request to get equipment by date, range and plane");
         return new GeneralResponse<>(equipmentService
                 .getByRangeAndDateIntervalAndPlane(rangeId, beginDate, endDate));
     }

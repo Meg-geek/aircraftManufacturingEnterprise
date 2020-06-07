@@ -23,7 +23,7 @@ public class PlaneController {
         return new GeneralResponse<>(planeService.getAllPlanes());
     }
 
-    @PutMapping("/change")
+    @PutMapping("/update")
     public GeneralResponse<ProductDto> changePlane(@RequestBody ProductDto changedPlane) {
         return new GeneralResponse<>(planeService.changePlane(changedPlane));
     }
@@ -70,6 +70,7 @@ public class PlaneController {
     @GetMapping("/get-now-building-by-company")
     public GeneralResponse<List<ProductDto>> findNowBuildingByCompany(
             @RequestParam("id") int id) {
+        log.info("Get request to get now building planes by company");
         return new GeneralResponse<>(planeService
                 .findNowBuildingByCompany(id));
     }
@@ -77,6 +78,7 @@ public class PlaneController {
     @GetMapping("/get-now-building-by-guild")
     public GeneralResponse<List<ProductDto>> findNowBuildingByGuild(
             @RequestParam("id") int id) {
+        log.info("Get request to get now building planes by guild");
         return new GeneralResponse<>(planeService
                 .findNowBuildingByGuild(id));
     }
@@ -84,6 +86,7 @@ public class PlaneController {
     @GetMapping("/get-now-building-by-site")
     public GeneralResponse<List<ProductDto>> findNowBuildingBySite(
             @RequestParam("id") int id) {
+        log.info("Get request to get now building planes by site");
         return new GeneralResponse<>(planeService
                 .findNowBuildingBySite(id));
     }
@@ -93,6 +96,7 @@ public class PlaneController {
             @RequestParam("rangeId") int rangeId,
             @RequestParam("beginDate") long beginDate,
             @RequestParam("endDate") long endDate) {
+        log.info("Get request to get planes by date and range");
         return new GeneralResponse<>(planeService
                 .findByDateIntervalAndRange(rangeId, beginDate, endDate));
     }

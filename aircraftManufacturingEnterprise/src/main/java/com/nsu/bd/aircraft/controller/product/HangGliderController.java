@@ -23,7 +23,7 @@ public class HangGliderController {
         return new GeneralResponse<>(hangGliderService.getAllHangGliders());
     }
 
-    @PutMapping("/change")
+    @PutMapping("/update")
     public GeneralResponse<ProductDto> changePlane(@RequestBody ProductDto changedHangGlider) {
         return new GeneralResponse<>(hangGliderService.changeHangGlider(changedHangGlider));
     }
