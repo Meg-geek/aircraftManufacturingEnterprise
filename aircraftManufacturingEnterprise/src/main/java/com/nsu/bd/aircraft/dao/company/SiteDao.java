@@ -29,4 +29,10 @@ public interface SiteDao extends CrudRepository<Site, Integer> {
             "    left join guild on site.guild_id = guild.id\n" +
             "where guild.company_id = :companyId", nativeQuery = true)
     List<Site> getByCompanyId(@Param("companyId") int companyId);
+
+    @Query(value = "select site.id, work_type, guild_id, site_manager_id from site " +
+            " left join brigade on site.id = site_id " +
+            " where brigade.id = :brigadeId ",
+            nativeQuery = true)
+    Site getByBrigadeId(@Param("brigadeId") int brigadeId);
 }

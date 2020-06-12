@@ -53,4 +53,9 @@ public class LocksmithService implements StaffService {
         return employeeConverter
                 .getEmployeeDtos(locksmithDao.getByGuild(guildId));
     }
+
+    public List<EmployeeDto> getFreeWorkers() {
+        return employeeConverter
+                .getEmployeeDtos(locksmithDao.getFreeWorkers());
+    }
 }

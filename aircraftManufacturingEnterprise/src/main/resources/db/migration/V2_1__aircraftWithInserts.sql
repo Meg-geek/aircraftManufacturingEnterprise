@@ -496,7 +496,12 @@ VALUES ('Иванов', 'Иван'),
        ( 'Сергеев', 'Евгений' ),
        ( 'Сорокин', 'Евгений' ),
        ( 'Тетерин', 'Евгений' ),
-       ( 'Макаров', 'Евгений' );
+       ( 'Макаров', 'Евгений' ),
+       ('Соколов', 'Максим'),
+       ('Плешков', 'Марат'),
+       ('Михайлов', 'Иван'),
+       ('Степанов', 'Федор'),
+       ('Козлов', 'Иван');
 
 
 insert into engineering_staff
@@ -648,6 +653,15 @@ VALUES (41, 1),
        (44, 4),
        (45, 5);
 
+insert into worker (id)
+values (46), (47), (48), (49), (50);
+
+insert into welders values (46), (50);
+
+insert into pickers values (47), (49);
+
+insert into turners values (48);
+
 insert into welders
 values (41),
        (42),
@@ -787,7 +801,7 @@ alter sequence product_accounting_id_seq restart with 15;
 
 ALTER SEQUENCE company_id_seq RESTART WITH 7;
 
-ALTER SEQUENCE staff_id_seq RESTART WITH 41;
+ALTER SEQUENCE staff_id_seq RESTART WITH 51;
 
 ALTER SEQUENCE stage_id_seq RESTART WITH 6;
 

@@ -70,4 +70,10 @@ public class SiteController {
             @RequestParam("companyId") int companyId) {
         return new GeneralResponse<>(siteService.getByCompanyId(companyId));
     }
+
+    @GetMapping("/get-by-brigade-id")
+    public GeneralResponse<SiteDto> getByBrigadeId(
+            @RequestParam("brigadeId") int brigadeId) {
+        return new GeneralResponse<>(siteService.getByBrigadeId(brigadeId));
+    }
 }

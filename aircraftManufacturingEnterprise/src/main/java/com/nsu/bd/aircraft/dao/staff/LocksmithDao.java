@@ -29,4 +29,11 @@ public interface LocksmithDao extends CrudRepository<Locksmith, Integer> {
             "where site.guild_id = :guildId and worker.id IN (select id from locksmiths);",
             nativeQuery = true)
     List<Locksmith> getByGuild(@Param("guildId") int guildId);
+
+    @Query(value = "select staff.id, name, surname," +
+            "brigade_id from staff " +
+            "    left join worker on worker.id = staff.id " +
+            "    where brigade_id is null" +
+            " and staff.id in (select id from locksmiths)", nativeQuery = true)
+    List<Locksmith> getFreeWorkers();
 }

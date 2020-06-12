@@ -53,4 +53,9 @@ public class WelderService implements StaffService {
         return employeeConverter
                 .getEmployeeDtos(welderDao.getByGuild(guildId));
     }
+
+    public List<EmployeeDto> getFreeWorkers() {
+        return employeeConverter
+                .getEmployeeDtos(welderDao.getFreeWorkers());
+    }
 }

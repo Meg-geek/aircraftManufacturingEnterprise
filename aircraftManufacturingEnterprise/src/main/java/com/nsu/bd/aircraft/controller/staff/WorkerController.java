@@ -7,10 +7,7 @@ import com.nsu.bd.aircraft.service.staff.WorkerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,13 @@ public class WorkerController {
     public GeneralResponse<List<EmployeeDto>> getByBrigade(
             @RequestBody BrigadeDto brigade) {
         return new GeneralResponse<>(workerService.getByBrigade(brigade));
+    }
+
+    @PutMapping("/set-brigade")
+    public GeneralResponse setWorkerBrigade(
+            @RequestParam("workerId") int workerId,
+            @RequestParam("brigadeId") int brigadeId) {
+        workerService.setWorkerBrigade(workerId, brigadeId);
+        return GeneralResponse.ok();
     }
 }

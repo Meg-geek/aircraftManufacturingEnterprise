@@ -129,6 +129,11 @@ public class EmployeeConverter {
         return employeeDto;
     }
 
+    public Worker getWorker(EmployeeDto employeeDto) {
+        Worker worker = new Worker();
+        return getWorker(worker, employeeDto);
+    }
+
     private Worker getWorker(Worker worker, EmployeeDto employeeDto) {
         getEmpoyee(worker, employeeDto);
         worker.setBrigade(brigadeConverter.getBrigade(employeeDto.getBrigade()));

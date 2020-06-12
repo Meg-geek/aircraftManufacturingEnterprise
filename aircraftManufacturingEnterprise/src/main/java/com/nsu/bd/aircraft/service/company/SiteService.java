@@ -70,4 +70,9 @@ public class SiteService {
         return siteConverter
                 .getSiteDtos(siteDao.getByCompanyId(companyId));
     }
+
+    public SiteDto getByBrigadeId(int brigadeId) {
+        return siteConverter
+                .getSiteDto(siteDao.getByBrigadeId(brigadeId));
+    }
 }

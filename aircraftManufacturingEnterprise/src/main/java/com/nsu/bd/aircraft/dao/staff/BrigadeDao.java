@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BrigadeDao extends CrudRepository<Brigade, Integer> {
@@ -28,4 +29,18 @@ public interface BrigadeDao extends CrudRepository<Brigade, Integer> {
             "where product_id = :productId",
             nativeQuery = true)
     List<Brigade> getBrigadesByProductId(@Param("productId") int productId);
+
+    @Query(value = "update brigade " +
+            "set foreman_id = :staffId " +
+            "where id = :brigadeId returning brigade.id",
+            nativeQuery = true)
+    Optional<Integer> setForeman(@Param("brigadeId") int brigadeId,
+                                 @Param("staffId") int staffId);
+
+    @Query(value = "update brigade " +
+            "set site_id = :siteId " +
+            "where id = :brigadeId returning brigade.id",
+            nativeQuery = true)
+    Optional<Integer> setSite(@Param("brigadeId") int brigadeId,
+                              @Param("siteId") int siteId);
 }

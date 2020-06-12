@@ -8,6 +8,7 @@ import com.nsu.bd.aircraft.service.converters.staff.EmployeeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,5 +23,10 @@ public class WorkerService {
         return employeeConverter
                 .getEmployeeDtos(workerDao
                         .getByBrigade(brigadeConverter.getBrigade(brigadeDto)));
+    }
+
+    @Transactional
+    public void setWorkerBrigade(int workerId, int brigadeId) {
+        workerDao.setWorkerBrigade(workerId, brigadeId);
     }
 }

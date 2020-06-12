@@ -29,4 +29,11 @@ public interface PickerDao extends CrudRepository<Picker, Integer> {
             "where site.guild_id = :guildId and worker.id IN (select id from pickers);",
             nativeQuery = true)
     List<Picker> getByGuild(@Param("guildId") int guildId);
+
+    @Query(value = "select staff.id, name, surname," +
+            "brigade_id from staff " +
+            "    left join worker on worker.id = staff.id " +
+            "    where brigade_id is null" +
+            " and staff.id in (select id from pickers)", nativeQuery = true)
+    List<Picker> getFreeWorkers();
 }

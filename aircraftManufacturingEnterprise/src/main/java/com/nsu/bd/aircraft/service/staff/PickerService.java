@@ -53,4 +53,9 @@ public class PickerService implements StaffService {
         return employeeConverter
                 .getEmployeeDtos(pickerDao.getByGuild(guildId));
     }
+
+    public List<EmployeeDto> getFreeWorkers() {
+        return employeeConverter
+                .getEmployeeDtos(pickerDao.getFreeWorkers());
+    }
 }

@@ -53,4 +53,9 @@ public class TurnerService implements StaffService {
         return employeeConverter
                 .getEmployeeDtos(turnerDao.getByGuild(guildId));
     }
+
+    public List<EmployeeDto> getFreeWorkers() {
+        return employeeConverter
+                .getEmployeeDtos(turnerDao.getFreeWorkers());
+    }
 }
