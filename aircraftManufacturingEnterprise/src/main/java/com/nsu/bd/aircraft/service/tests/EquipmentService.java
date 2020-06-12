@@ -34,10 +34,10 @@ public class EquipmentService {
     }
 
     @Transactional
-    public Equipment updateEquipment(EquipmentDto equipmentDto) {
+    public EquipmentDto updateEquipment(EquipmentDto equipmentDto) {
         Equipment equipment = equipmentConverter.getEquipment(equipmentDto);
         equipment.setRange(rangeService.addRange(equipment.getRange()));
-        return equipmentDao.save(equipment);
+        return equipmentConverter.getEquipmentDto(equipmentDao.save(equipment));
     }
 
     public List<EquipmentDto> getByProductAndRangeAndDateInterval(int productId,

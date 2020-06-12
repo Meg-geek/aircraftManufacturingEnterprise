@@ -22,6 +22,7 @@ public class Range {
     private String name;
 
     @ManyToMany
+    @JoinTable(name = "range_guild")
     private List<Guild> guilds;
 
     @OneToMany(fetch = FetchType.LAZY)

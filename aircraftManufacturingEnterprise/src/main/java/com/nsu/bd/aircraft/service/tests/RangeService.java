@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -21,7 +22,8 @@ public class RangeService {
         if (range == null) {
             return null;
         }
-        return rangeDao.save(range);
+        Optional<Range> foundRange = rangeDao.findById(range.getId());
+        return foundRange.orElseGet(() -> rangeDao.save(range));
     }
 
     @Transactional

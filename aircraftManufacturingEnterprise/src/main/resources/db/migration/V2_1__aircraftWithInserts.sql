@@ -308,11 +308,11 @@ alter table test
 create table if not exists equipment_test
 (
     equipment_id integer not null
-        constraint equipment_tests_equipment_id_fk
+        constraint equipment_test_equipment_id_fk
             references equipment
             on update cascade on delete cascade,
     test_id      integer not null
-        constraint equipment_tests_test_id_fk
+        constraint equipment_test_test_id_fk
             references test
             on update cascade on delete cascade
 );

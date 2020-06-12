@@ -21,5 +21,6 @@ public class Equipment {
     private Range range;
 
     @ManyToMany
+    @JoinTable(name = "equipment_test")
     private List<Test> tests;
 }

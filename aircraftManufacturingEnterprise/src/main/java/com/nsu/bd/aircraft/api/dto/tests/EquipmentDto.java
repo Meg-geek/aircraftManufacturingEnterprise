@@ -12,5 +12,5 @@ import lombok.Setter;
 public class EquipmentDto {
     private int id;
     private String type;
-    private RangeDto rangeDto;
+    private RangeDto range;
 }

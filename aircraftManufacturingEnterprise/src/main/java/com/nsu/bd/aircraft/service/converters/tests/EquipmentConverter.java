@@ -23,6 +23,7 @@ public class EquipmentConverter {
         Equipment equipment = new Equipment();
         equipment.setId(equipmentDto.getId());
         equipment.setType(equipmentDto.getType());
+        equipment.setRange(rangeConverter.getRange(equipmentDto.getRange()));
         return equipment;
     }
 
