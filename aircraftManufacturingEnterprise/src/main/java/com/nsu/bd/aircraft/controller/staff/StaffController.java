@@ -29,8 +29,9 @@ public class StaffController {
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("masterId") int masterId) {
-        staffService.deleteById(masterId);
+    public GeneralResponse<?> deleteById(@RequestParam("id") int id) {
+        staffService.deleteById(id);
+        return GeneralResponse.ok();
     }
 
     @PutMapping("/update")
