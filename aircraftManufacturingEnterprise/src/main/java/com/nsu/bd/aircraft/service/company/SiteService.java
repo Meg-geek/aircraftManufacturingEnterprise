@@ -75,4 +75,8 @@ public class SiteService {
         return siteConverter
                 .getSiteDto(siteDao.getByBrigadeId(brigadeId));
     }
+
+    public Site addSite(Site site) {
+        return siteDao.save(site);
+    }
 }

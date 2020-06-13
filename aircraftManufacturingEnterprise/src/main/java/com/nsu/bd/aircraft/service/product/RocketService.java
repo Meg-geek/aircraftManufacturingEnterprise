@@ -2,7 +2,6 @@ package com.nsu.bd.aircraft.service.product;
 
 import com.nsu.bd.aircraft.api.dto.product.ProductDto;
 import com.nsu.bd.aircraft.dao.product.RocketDao;
-import com.nsu.bd.aircraft.model.product.Product;
 import com.nsu.bd.aircraft.model.product.Rocket;
 import com.nsu.bd.aircraft.service.company.GuildService;
 import com.nsu.bd.aircraft.service.converters.product.ProductConverter;

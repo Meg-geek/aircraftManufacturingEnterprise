@@ -3,6 +3,7 @@ package com.nsu.bd.aircraft.service.accounting;
 
 import com.nsu.bd.aircraft.api.dto.accounting.StageDto;
 import com.nsu.bd.aircraft.dao.accounting.StageDao;
+import com.nsu.bd.aircraft.model.accounting.Stage;
 import com.nsu.bd.aircraft.service.converters.accounting.StageConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,9 @@ public class StageService {
                 .getStageDto(stageDao
                         .save(stageConverter
                                 .getStage(stageDto)));
+    }
+
+    public Stage addStage(Stage stage) {
+        return stageDao.save(stage);
     }
 }

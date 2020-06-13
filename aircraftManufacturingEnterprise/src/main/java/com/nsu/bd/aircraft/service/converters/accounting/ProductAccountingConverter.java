@@ -28,6 +28,7 @@ public class ProductAccountingConverter {
             return null;
         }
         ProductAccounting productAccounting = new ProductAccounting();
+        productAccounting.setId(productAccountingDto.getId());
         productAccounting.setProduct(productConverter
                 .getProduct(productAccountingDto.getProduct()));
         productAccounting.setSite(siteConverter
@@ -50,6 +51,7 @@ public class ProductAccountingConverter {
             return null;
         }
         ProductAccountingDto productAccountingDto = new ProductAccountingDto();
+        productAccountingDto.setId(productAccounting.getId());
         productAccountingDto.setProduct(productConverter
                 .getProductDto(productAccounting.getProduct()));
         productAccountingDto.setSite(siteConverter

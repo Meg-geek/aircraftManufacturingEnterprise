@@ -13,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductAccountingDto {
+    private int id;
     private ProductDto product;
     private StageDto stage;
     private SiteDto site;
