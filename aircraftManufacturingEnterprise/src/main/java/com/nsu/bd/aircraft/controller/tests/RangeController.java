@@ -43,4 +43,10 @@ public class RangeController {
             @RequestParam("productId") int productId) {
         return new GeneralResponse<>(rangeService.getByProductId(productId));
     }
+
+    @GetMapping("/get-by-guild-id")
+    public GeneralResponse<List<RangeDto>> getByGuildId(
+            @RequestParam("id") int id) {
+        return new GeneralResponse<>(rangeService.findByGuildId(id));
+    }
 }

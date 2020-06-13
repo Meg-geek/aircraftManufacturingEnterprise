@@ -1,9 +1,12 @@
 package com.nsu.bd.aircraft.service.tests;
 
 import com.nsu.bd.aircraft.api.dto.tests.EquipmentDto;
+import com.nsu.bd.aircraft.api.dto.tests.RangeDto;
 import com.nsu.bd.aircraft.dao.tests.EquipmentDao;
 import com.nsu.bd.aircraft.model.tests.Equipment;
+import com.nsu.bd.aircraft.model.tests.Range;
 import com.nsu.bd.aircraft.service.converters.tests.EquipmentConverter;
+import com.nsu.bd.aircraft.service.converters.tests.RangeConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ import java.util.List;
 public class EquipmentService {
     private final EquipmentDao equipmentDao;
     private final EquipmentConverter equipmentConverter;
+    private final RangeConverter rangeConverter;
 
     private final RangeService rangeService;
 
@@ -100,5 +104,12 @@ public class EquipmentService {
                 .getEquipmentDtos(equipmentDao
                         .getByRangeAndDateInterval(rangeId,
                                 new Date(beginDate), getEndDate(endDate)));
+    }
+
+    public List<EquipmentDto> getByRange(RangeDto rangeDto) {
+        Range range = rangeService.addRange(rangeConverter.getRange(rangeDto));
+        List<Equipment> equipment = equipmentDao.findByRange(range);
+        return equipmentConverter
+                .getEquipmentDtos(equipment);
     }
 }

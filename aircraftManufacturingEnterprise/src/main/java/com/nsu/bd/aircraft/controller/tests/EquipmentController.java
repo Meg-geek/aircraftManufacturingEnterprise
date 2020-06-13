@@ -2,6 +2,7 @@ package com.nsu.bd.aircraft.controller.tests;
 
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.dto.tests.EquipmentDto;
+import com.nsu.bd.aircraft.api.dto.tests.RangeDto;
 import com.nsu.bd.aircraft.service.tests.EquipmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -93,5 +94,12 @@ public class EquipmentController {
             @RequestParam("endDate") long endDate) {
         return new GeneralResponse<>(equipmentService
                 .getByRangeAndDateInterval(rangeId, beginDate, endDate));
+    }
+
+    @PutMapping("/get-by-range")
+    public GeneralResponse<List<EquipmentDto>> getByRange(
+            @RequestBody RangeDto rangeDto) {
+        log.info("get request to get equipment by range");
+        return new GeneralResponse<>(equipmentService.getByRange(rangeDto));
     }
 }

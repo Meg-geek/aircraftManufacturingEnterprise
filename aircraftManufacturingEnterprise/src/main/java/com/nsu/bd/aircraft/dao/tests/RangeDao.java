@@ -24,4 +24,10 @@ public interface RangeDao extends CrudRepository<Range, Integer> {
             nativeQuery = true)
     Integer updateRangeName(@Param("id") int id,
                             @Param("name") String newName);
+
+    @Query(value = "select range.id, range.name from range " +
+            " left join range_guild rg on range.id = rg.range_id " +
+            " where rg.guild_id = :guildId",
+            nativeQuery = true)
+    List<Range> findByGuild(@Param("guildId") int guildId);
 }

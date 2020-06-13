@@ -89,4 +89,8 @@ public class RangeService {
         range.setGuilds(guilds);
         rangeDao.save(range);
     }
+
+    public List<RangeDto> findByGuildId(int id) {
+        return rangeConverter.getRangeDtos(rangeDao.findByGuild(id));
+    }
 }

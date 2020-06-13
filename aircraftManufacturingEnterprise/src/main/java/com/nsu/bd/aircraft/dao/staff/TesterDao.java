@@ -1,6 +1,7 @@
 package com.nsu.bd.aircraft.dao.staff;
 
 import com.nsu.bd.aircraft.model.staff.Tester;
+import com.nsu.bd.aircraft.model.tests.Range;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -98,4 +99,6 @@ public interface TesterDao extends CrudRepository<Tester, Integer> {
     List<Tester> getByRangeAndDateInterval(@Param("rangeId") int rangeId,
                                            @Param("beginDate") Date beginDate,
                                            @Param("endDate") Date endDate);
+
+    List<Tester> findByRange(Range range);
 }

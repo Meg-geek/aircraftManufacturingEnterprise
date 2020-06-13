@@ -2,13 +2,11 @@ package com.nsu.bd.aircraft.controller.staff;
 
 import com.nsu.bd.aircraft.api.GeneralResponse;
 import com.nsu.bd.aircraft.api.dto.staff.EmployeeDto;
+import com.nsu.bd.aircraft.api.dto.tests.RangeDto;
 import com.nsu.bd.aircraft.service.staff.TesterService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -76,5 +74,11 @@ public class TesterController extends StaffController {
             @RequestParam("endDate") long endDate) {
         return new GeneralResponse<>(testerService
                 .getByRangeAndDateInterval(rangeId, beginDate, endDate));
+    }
+
+    @PutMapping("/get-by-range")
+    public GeneralResponse<List<EmployeeDto>> getByRange(
+            @RequestBody RangeDto rangeDto) {
+        return new GeneralResponse<>(testerService.getByRange(rangeDto));
     }
 }

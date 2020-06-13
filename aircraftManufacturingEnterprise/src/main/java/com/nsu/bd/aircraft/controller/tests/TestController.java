@@ -1,6 +1,7 @@
 package com.nsu.bd.aircraft.controller.tests;
 
 import com.nsu.bd.aircraft.api.GeneralResponse;
+import com.nsu.bd.aircraft.api.dto.company.GuildDto;
 import com.nsu.bd.aircraft.api.dto.tests.TestDto;
 import com.nsu.bd.aircraft.service.tests.TestService;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,18 @@ public class TestController {
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("testId") int testId) {
+    public GeneralResponse<?> deleteById(@RequestParam("id") int testId) {
         testService.deleteById(testId);
+        return GeneralResponse.ok();
     }
 
     @PutMapping("/update")
     public GeneralResponse<TestDto> updateTest(@RequestBody TestDto testDto) {
         return new GeneralResponse<>(testService.updateTest(testDto));
+    }
+
+    @PutMapping("/get-by-guild")
+    public GeneralResponse<List<TestDto>> getByGuild(@RequestBody GuildDto guildDto) {
+        return new GeneralResponse<>(testService.findByGuild(guildDto));
     }
 }

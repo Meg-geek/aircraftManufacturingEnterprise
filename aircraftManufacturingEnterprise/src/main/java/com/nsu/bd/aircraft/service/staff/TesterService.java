@@ -1,8 +1,12 @@
 package com.nsu.bd.aircraft.service.staff;
 
 import com.nsu.bd.aircraft.api.dto.staff.EmployeeDto;
+import com.nsu.bd.aircraft.api.dto.tests.RangeDto;
 import com.nsu.bd.aircraft.dao.staff.TesterDao;
+import com.nsu.bd.aircraft.model.tests.Range;
 import com.nsu.bd.aircraft.service.converters.staff.EmployeeConverter;
+import com.nsu.bd.aircraft.service.converters.tests.RangeConverter;
+import com.nsu.bd.aircraft.service.tests.RangeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,8 @@ import static java.util.Collections.emptyList;
 public class TesterService implements StaffService {
     private final TesterDao testerDao;
     private final EmployeeConverter employeeConverter;
+    private final RangeConverter rangeConverter;
+    private final RangeService rangeService;
 
     @Override
     @Transactional
@@ -145,5 +151,10 @@ public class TesterService implements StaffService {
                 .getEmployeeDtos(testerDao
                         .getByRangeAndDateInterval(rangeId,
                                 new Date(beginDate), new Date(endDate)));
+    }
+
+    public List<EmployeeDto> getByRange(RangeDto rangeDto) {
+        Range range = rangeService.addRange(rangeConverter.getRange(rangeDto));
+        return employeeConverter.getEmployeeDtos(testerDao.findByRange(range));
     }
 }

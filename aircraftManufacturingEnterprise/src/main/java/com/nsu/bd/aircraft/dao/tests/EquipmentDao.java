@@ -1,6 +1,7 @@
 package com.nsu.bd.aircraft.dao.tests;
 
 import com.nsu.bd.aircraft.model.tests.Equipment;
+import com.nsu.bd.aircraft.model.tests.Range;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -90,4 +91,6 @@ public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
     List<Equipment> getByRangeAndDateInterval(@Param("rangeId") int rangeId,
                                               @Param("beginDate") Date beginDate,
                                               @Param("endDate") Date endDate);
+
+    List<Equipment> findByRange(Range range);
 }
