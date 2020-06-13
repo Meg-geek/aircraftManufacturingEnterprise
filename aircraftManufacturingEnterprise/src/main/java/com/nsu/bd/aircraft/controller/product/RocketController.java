@@ -1,8 +1,6 @@
 package com.nsu.bd.aircraft.controller.product;
 
-import com.nsu.bd.aircraft.api.ErrorCause;
 import com.nsu.bd.aircraft.api.GeneralResponse;
-import com.nsu.bd.aircraft.api.Status;
 import com.nsu.bd.aircraft.api.dto.product.ProductDto;
 import com.nsu.bd.aircraft.service.product.RocketService;
 import lombok.RequiredArgsConstructor;
@@ -19,18 +17,16 @@ import java.util.List;
 public class RocketController {
     private final RocketService rocketService;
 
+    @PostMapping("/add")
+    public GeneralResponse<?> add(@RequestBody ProductDto productDto) {
+        rocketService.addRocket(productDto);
+        return GeneralResponse.ok();
+    }
+
     @GetMapping("/get-all")
     public GeneralResponse<List<ProductDto>> getAllRockets() {
         log.info("Get all rockets request");
         return new GeneralResponse<>(rocketService.getAllRockets());
-    }
-
-    @PostMapping("/add")
-    public GeneralResponse<?> addProduct(@RequestBody ProductDto productDto) {
-        if (rocketService.addRocket(productDto)) {
-            return GeneralResponse.ok();
-        }
-        return new GeneralResponse<>(Status.ERROR, ErrorCause.WRONG_FORMAT);
     }
 
     @PutMapping("/update")

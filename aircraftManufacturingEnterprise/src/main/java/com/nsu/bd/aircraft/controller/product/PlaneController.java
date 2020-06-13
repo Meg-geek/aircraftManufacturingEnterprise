@@ -17,6 +17,12 @@ import java.util.List;
 public class PlaneController {
     private final PlaneService planeService;
 
+    @PostMapping("/add")
+    public GeneralResponse<?> add(@RequestBody ProductDto productDto) {
+        planeService.add(productDto);
+        return GeneralResponse.ok();
+    }
+
     @GetMapping("/get-all")
     public GeneralResponse<List<ProductDto>> getAllPlanes() {
         log.info("Get all planes request");

@@ -26,7 +26,7 @@ public class HangGliderService {
 
     @Transactional
     public ProductDto changeHangGlider(ProductDto productDto) {
-        HangGlider hangGlider = (HangGlider) productConverter.getProduct(productDto);
+        HangGlider hangGlider = productConverter.getHangGlider(productDto);
         hangGlider.setGuild(guildService.addGuild(hangGlider.getGuild()));
         return productConverter.getProductDto(hangGliderDao.save(hangGlider));
     }
@@ -112,5 +112,11 @@ public class HangGliderService {
                         .findByDateIntervalAndRange(rangeId,
                                 new Date(beginDate),
                                 new Date(endDate)));
+    }
+
+    @Transactional
+    public void add(ProductDto productDto) {
+        HangGlider hangGlider = productConverter.getHangGlider(productDto);
+        hangGliderDao.save(hangGlider);
     }
 }

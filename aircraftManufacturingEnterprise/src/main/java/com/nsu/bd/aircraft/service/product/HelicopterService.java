@@ -27,7 +27,7 @@ public class HelicopterService {
 
     @Transactional
     public ProductDto changeHelicopter(ProductDto productDto) {
-        Helicopter helicopter = (Helicopter) productConverter.getProduct(productDto);
+        Helicopter helicopter = productConverter.getHelicopter(productDto);
         helicopter.setGuild(guildService.addGuild(helicopter.getGuild()));
         return productConverter.getProductDto(helicopterDao.save(helicopter));
     }
@@ -113,5 +113,11 @@ public class HelicopterService {
                         .findByDateIntervalAndRange(rangeId,
                                 new Date(beginDate),
                                 new Date(endDate)));
+    }
+
+    @Transactional
+    public void add(ProductDto productDto) {
+        Helicopter helicopter = productConverter.getHelicopter(productDto);
+        helicopterDao.save(helicopter);
     }
 }

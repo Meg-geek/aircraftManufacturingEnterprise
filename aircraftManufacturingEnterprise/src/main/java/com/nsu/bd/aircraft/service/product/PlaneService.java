@@ -26,7 +26,7 @@ public class PlaneService {
 
     @Transactional
     public ProductDto changePlane(ProductDto productDto) {
-        Plane plane = (Plane) productConverter.getProduct(productDto);
+        Plane plane = productConverter.getPlane(productDto);
         plane.setGuild(guildService.addGuild(plane.getGuild()));
         return productConverter.getProductDto(planeDao.save(plane));
     }
@@ -112,5 +112,11 @@ public class PlaneService {
                         .findByDateIntervalAndRange(rangeId,
                                 new Date(beginDate),
                                 new Date(endDate)));
+    }
+
+    @Transactional
+    public void add(ProductDto productDto) {
+        Plane plane = productConverter.getPlane(productDto);
+        planeDao.save(plane);
     }
 }

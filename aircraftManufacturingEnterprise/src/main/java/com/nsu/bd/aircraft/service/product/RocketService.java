@@ -27,11 +27,7 @@ public class RocketService {
 
     @Transactional
     public boolean addRocket(ProductDto productDto) {
-        Product product = productConverter.getProduct(productDto);
-        if (!(product instanceof Rocket)) {
-            return false;
-        }
-        Rocket rocket = (Rocket) product;
+        Rocket rocket = productConverter.getRocket(productDto);
         rocket.setGuild(guildService.addGuild(rocket.getGuild()));
         rocketDao.save(rocket);
         return true;
@@ -39,7 +35,7 @@ public class RocketService {
 
     @Transactional
     public ProductDto changeRocket(ProductDto productDto) {
-        Rocket rocket = (Rocket) productConverter.getProduct(productDto);
+        Rocket rocket = productConverter.getRocket(productDto);
         rocket.setGuild(guildService.addGuild(rocket.getGuild()));
         return productConverter.getProductDto(rocketDao.save(rocket));
     }
@@ -125,5 +121,11 @@ public class RocketService {
                         .findByDateIntervalAndRange(rangeId,
                                 new Date(beginDate),
                                 new Date(endDate)));
+    }
+
+    @Transactional
+    public void add(ProductDto productDto) {
+        Rocket rocket = (Rocket) productConverter.getProduct(productDto);
+        rocketDao.save(rocket);
     }
 }

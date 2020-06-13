@@ -17,6 +17,12 @@ import java.util.List;
 public class HelicopterController {
     private final HelicopterService helicopterService;
 
+    @PostMapping("/add")
+    public GeneralResponse<?> add(@RequestBody ProductDto productDto) {
+        helicopterService.add(productDto);
+        return GeneralResponse.ok();
+    }
+
     @GetMapping("/get-all")
     public GeneralResponse<List<ProductDto>> getAllHelicopters() {
         log.info("Get all helicopters request");

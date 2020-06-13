@@ -17,6 +17,12 @@ import java.util.List;
 public class HangGliderController {
     private final HangGliderService hangGliderService;
 
+    @PostMapping("/add")
+    public GeneralResponse<?> add(@RequestBody ProductDto productDto) {
+        hangGliderService.add(productDto);
+        return GeneralResponse.ok();
+    }
+
     @GetMapping("/get-all")
     public GeneralResponse<List<ProductDto>> getAllHangGliders() {
         log.info("Get all hang gliders request");

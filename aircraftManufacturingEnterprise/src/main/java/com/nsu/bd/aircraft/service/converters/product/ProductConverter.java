@@ -22,15 +22,15 @@ public class ProductConverter {
 
     public Product getProduct(ProductDto productDto) {
         if (productDto.getChargePower() > MIN_CHARGE_POWER) {
-            return createRocket(productDto);
+            return getRocket(productDto);
         }
         if (productDto.getEngineAmount() > MIN_ENGINE_AMOUNT) {
-            return createPlane(productDto);
+            return getPlane(productDto);
         }
         if (productDto.getWeight() > MIN_WEIGHT) {
-            return createHelicopter(productDto);
+            return getHelicopter(productDto);
         }
-        return createHangGlider(productDto);
+        return getHangGlider(productDto);
     }
 
     public ProductDto getProductDto(Product product) {
@@ -40,7 +40,9 @@ public class ProductConverter {
             productDto.setType(((HangGlider) product).getType());
         }
         if (product instanceof Helicopter) {
-            productDto.setType(((Helicopter) product).getType());
+            Helicopter helicopter = (Helicopter) product;
+            productDto.setType(helicopter.getType());
+            productDto.setWeight(helicopter.getWeight());
         }
         if (product instanceof Plane) {
             Plane plane = (Plane) product;
@@ -71,14 +73,14 @@ public class ProductConverter {
                 .map(this::getProduct).collect(toList());
     }
 
-    private HangGlider createHangGlider(ProductDto productDto) {
+    public HangGlider getHangGlider(ProductDto productDto) {
         HangGlider hangGlider = new HangGlider();
         setIdAndGuild(hangGlider, productDto);
         hangGlider.setType(productDto.getType());
         return hangGlider;
     }
 
-    private Helicopter createHelicopter(ProductDto productDto) {
+    public Helicopter getHelicopter(ProductDto productDto) {
         Helicopter helicopter = new Helicopter();
         setIdAndGuild(helicopter, productDto);
         helicopter.setType(productDto.getType());
@@ -86,7 +88,7 @@ public class ProductConverter {
         return helicopter;
     }
 
-    private Plane createPlane(ProductDto productDto) {
+    public Plane getPlane(ProductDto productDto) {
         Plane plane = new Plane();
         setIdAndGuild(plane, productDto);
         plane.setType(productDto.getType());
@@ -99,7 +101,7 @@ public class ProductConverter {
         product.setGuild(guildConverter.getGuild(productDto.getGuild()));
     }
 
-    private Rocket createRocket(ProductDto productDto) {
+    public Rocket getRocket(ProductDto productDto) {
         Rocket rocket = new Rocket();
         setIdAndGuild(rocket, productDto);
         rocket.setChargePower(productDto.getChargePower());
