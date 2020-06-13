@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
+
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GuildConverter {
@@ -34,8 +37,19 @@ public class GuildConverter {
 
 
     public List<GuildDto> getGuildDtosList(List<Guild> guilds) {
+        if (guilds == null) {
+            return emptyList();
+        }
         List<GuildDto> guildDtos = new ArrayList<>();
         guilds.forEach(guild -> guildDtos.add(getGuildDto(guild)));
         return guildDtos;
+    }
+
+    public List<Guild> getGuilds(List<GuildDto> guildDtos) {
+        if (guildDtos == null) {
+            return emptyList();
+        }
+        return guildDtos.stream()
+                .map(this::getGuild).collect(toList());
     }
 }

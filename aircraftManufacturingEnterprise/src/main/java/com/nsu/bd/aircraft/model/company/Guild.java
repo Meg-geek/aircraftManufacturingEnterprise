@@ -33,7 +33,7 @@ public class Guild {
 
     //полигоны
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "test",
+    @JoinTable(name = "range_guild",
             joinColumns = @JoinColumn(name = "guild_id"),
             inverseJoinColumns = @JoinColumn(name = "range_id"))
     private List<Range> ranges;

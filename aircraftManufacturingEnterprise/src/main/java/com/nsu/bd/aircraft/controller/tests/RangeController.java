@@ -23,14 +23,14 @@ public class RangeController {
     }
 
     @PostMapping("/add")
-    public GeneralResponse<?> addRange(@RequestBody RangeDto rangeDto) {
-        rangeService.addRange(rangeDto);
-        return GeneralResponse.ok();
+    public GeneralResponse<RangeDto> addRange(@RequestBody RangeDto rangeDto) {
+        return new GeneralResponse<>(rangeService.addRange(rangeDto));
     }
 
     @DeleteMapping("/delete-by-id")
-    public void deleteById(@RequestParam("rangeId") int rangeId) {
+    public GeneralResponse<?> deleteById(@RequestParam("id") int rangeId) {
         rangeService.deleteById(rangeId);
+        return GeneralResponse.ok();
     }
 
     @PutMapping("/update")

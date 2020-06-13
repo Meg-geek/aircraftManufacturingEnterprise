@@ -22,7 +22,9 @@ public class Range {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "range_guild")
+    @JoinTable(name = "range_guild",
+            joinColumns = @JoinColumn(name = "range_id"),
+            inverseJoinColumns = @JoinColumn(name = "guild_id"))
     private List<Guild> guilds;
 
     @OneToMany(fetch = FetchType.LAZY)

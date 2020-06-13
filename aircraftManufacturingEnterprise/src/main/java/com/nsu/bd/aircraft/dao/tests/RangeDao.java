@@ -16,4 +16,12 @@ public interface RangeDao extends CrudRepository<Range, Integer> {
             "where product_id = :productId",
             nativeQuery = true)
     List<Range> getByProductId(@Param("productId") int productId);
+
+    @Query(value = "update range " +
+            " set name = :name " +
+            " where id = :id " +
+            " returning id",
+            nativeQuery = true)
+    Integer updateRangeName(@Param("id") int id,
+                            @Param("name") String newName);
 }
